@@ -37,8 +37,8 @@ class StackEditorServiceProvider extends ServiceProvider
   public function bootComponents() {
 
     Blade::component('stackeditor', 'AscentCreative\StackEditor\View\Components\Stack');
-    // Blade::component('cms-form-stackblock', 'AscentCreative\CMS\View\Components\Form\StackBlock');
-    // Blade::component('cms-form-stackblock-rowitem', 'AscentCreative\CMS\View\Components\Form\StackBlock\RowItem');
+    Blade::component('stackeditor-row', 'AscentCreative\StackEditor\View\Components\Row');
+    Blade::component('stackeditor-block', 'AscentCreative\StackEditor\View\Components\Block');
 
   }
 

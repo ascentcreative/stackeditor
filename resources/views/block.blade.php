@@ -1,0 +1,1 @@
+@includeFirst(['stackeditor.block.' . $type . '.edit', 'cms::stackeditor.block.' . $type . '.edit', 'stackeditor::block.' . $type . '.edit'])

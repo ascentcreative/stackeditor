@@ -1,0 +1,199 @@
+/* .stack-edit {
+
+} */
+
+
+.row-edit {
+    /* padding: 20px;  */
+    background-color: #f7f7f7;
+    border-radius: 5px; 
+    margin-bottom: 10px;
+    
+
+    display: flex;
+}
+
+.ui-sortable-placeholder.row-edit {
+    margin-bottom: 10px;
+}
+
+.row-edit .row-handle {
+    min-width: 20px;
+    background: #ccc;
+    flex: 0 0;
+    margin: -0px 00px -0px 0px ;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: grab;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    
+} 
+
+.row-edit .row-handle:before {
+    width: 100%;
+    text-align: center;
+    font-size: 1.2rem;
+    color: white;
+}
+
+.row-edit.ui-sortable-helper,
+.row-edit.ui-sortable-helper .row-handle {
+    cursor: grabbing !important;
+}
+
+.row-edit .row-content {
+
+    margin: 10px;
+    flex-basis: 100%;
+
+    display: flex;
+
+}
+
+.row-edit .row-settings {
+    
+    width: 50px;
+    flex: 0 0;
+}
+
+.row-edit .row-settings .controls {
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    padding: 10px 10px 10px 0px; 
+    font-size: 1.4rem; 
+    height:100%;
+}
+
+.ui-sortable-helper .block-content {
+    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 20%);
+}
+
+.ui-sortable-helper {
+    overflow: visible !important;
+    background: rgba(255,255,255,0.7);
+}
+
+
+.blocks {
+    position: relative;
+}
+
+.block {
+    /* padding: 5px; */
+   /* x background-color: #f7f7f7; */
+    border-radius: 5px;
+    overflow: hidden;
+} 
+
+.block .block-content {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    overflow: hidden;
+    margin: 0px 5px 0px 5px;
+    position: relative;
+}
+
+
+
+.block .block-handle {
+  
+    position: absolute;
+    top: 5px; 
+    right: 5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 100px;
+    z-index: 100;
+    cursor: grab;
+
+}
+
+.block.ui-sortable-helper,
+.block.ui-sortable-helper .block-handle {
+    cursor: grabbing !important;
+}
+
+
+.block .block-delete {
+  
+    position: absolute;
+    bottom: 5px; 
+    right: 5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 100px;
+    z-index: 100;
+    color: inherit;
+
+}
+
+.cke_focus:focus-visible {
+    outline: none !important;
+}
+
+.block .wysiwyg-editor {
+    /* xmargin-right: 30px; */
+    width: calc(100% - 25px) !important;
+}
+
+.block .ui-resizable-handle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: inherit;
+}
+
+.block .ui-resizable-handle:after {
+    content: '';
+    display: block;
+    height: 80%;
+    width: 2px;
+    background: #ccc;
+}
+
+.block .ui-resizable-e {
+    right: 7px;
+    width: 10px;
+}
+
+.block .ui-resizable-w {
+    left: 7px;
+    width: 10px;
+}
+
+.ui-sortable-placeholder {
+    border-radius: 10px;
+    background: #ececec;
+    visibility: visible !important;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+
+.controls A {
+    color: #333;
+}
+
+
+
+.drop-not-allowed:before {
+    content: 'Not enough space';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    position: absolute;
+    z-index: 110;
+    border-radius: 10px;
+    font-size: 30px;
+}
+

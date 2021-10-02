@@ -1,0 +1,1 @@
+{{ embedVideo( $block->video ) }}

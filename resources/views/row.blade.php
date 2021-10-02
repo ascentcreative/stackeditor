@@ -1,0 +1,114 @@
+@php 
+    $rowid = "row-" . uniqid();
+@endphp
+
+<div class="row-edit" id="{{ $rowid }}">
+
+    <div class="row-handle bi-arrow-down-up">
+
+    </div>
+
+    <div class="row-content blocks" id="">
+        {{ $slot }}
+        {{-- @yield('row-content') --}}
+    </div>
+
+    <div class="row-settings">
+
+        <div class="controls">
+
+            <div class="btn-group dropleft">
+                <A href="#" class="row-add-block-menu bi-plus-circle-fill" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></A>
+                <div class="dropdown-menu">
+                    <A href="#" class="row-add-block dropdown-item bi-card-text" data-block-type="text"> Text</A>
+                    <A href="#" class="row-add-block dropdown-item bi-card-image" data-block-type="image"> Image</A>
+                    <A href="#" class="row-add-block dropdown-item bi-camera-reels-fill" data-block-type="video"> Video</A>
+                </div>
+            </div>
+         
+            {{-- <div style="flex-basis: 100%; flex-shrink: 1">
+                @yield('row-actions')
+            </div> --}}
+         
+
+            <A href="#" class="row-open-settings bi-gear" data-toggle="modal" data-target="#{{ $rowid }}-settings"></A>
+
+            <A href="#" class="row-delete bi-trash"></A>
+
+        </div>
+
+      
+        {{-- Wrap settings in a modal --}}
+        <x-cms-modal modalid="{{ $rowid }}-settings" title="Row Settings" :closebutton="false">
+
+            <div class="container">
+            @section('row-settings')
+            
+               
+            @show
+
+                <x-cms-form-checkbox type="" name="{{ $name }}[published]" label="Published?" uncheckedValue="0" checkedValue="1" :value="$value->published ?? 1"/>
+
+                <x-cms-form-input type="text" name="{{ $name }}[contentwidth]" label="Content Width" :value="$value->contentwidth ?? ''">
+                    The width of the screen to use for the content. Leave blank for the default centralised portion, or enter values in % or px. <br/>
+                    <strong>Examples:<br/></strong>
+                    <code>100%</code> will use the full screen width.<br/>
+                    <code>500px</code> will use the central 500px of the screen (or shrink if narrower)
+                </x-cms-form-input>
+
+                {{-- <x-cms-form-checkbox type="" name="{{ $name }}[fullwidth]" label="Full Width?" :value="$value->fullwidth ?? ''">
+                </x-cms-form-checkbox> --}}
+
+                <x-cms-form-colour label="Background Colour" name="{{ $name }}[bgcolor]" :value="$value->bgcolor ?? 'white'" />
+
+                <x-cms-form-fileupload label="Background Image" name="{{ $name }}[bgimage]" :value="$value->bgimage ?? ''" />
+
+                <div class="border p-2 mb-2">
+                    <div><strong>Padding</strong></div>
+                    <x-cms-form-input type="text" name="{{ $name }}[padding][top]" label="Top" :value="$value->padding->top ?? 0"/>
+                    <x-cms-form-input type="text" name="{{ $name }}[padding][bottom]" label="Bottom" :value="$value->padding->bottom ?? 0"/>
+                    <x-cms-form-input type="text" name="{{ $name }}[padding][left]" label="Left" :value="$value->padding->left ?? 0"/>
+                    <x-cms-form-input type="text" name="{{ $name }}[padding][right]" label="Right" :value="$value->padding->right ?? 0"/>
+                </div>
+
+                <div class="border p-2">
+                    <div><strong>Margin</strong></div>
+                    <x-cms-form-input type="text" name="{{ $name }}[margin][top]" label="Top" :value="$value->margin->top ?? 0"/>
+                    <x-cms-form-input type="text" name="{{ $name }}[margin][bottom]" label="Bottom" :value="$value->margin->bottom ?? 0"/>
+                    <x-cms-form-input type="text" name="{{ $name }}[margin][left]" label="Left" :value="$value->margin->left ?? 0"/>
+                    <x-cms-form-input type="text" name="{{ $name }}[margin][right]" label="Right" :value="$value->margin->right ?? 0"/>
+                </div>
+        
+
+
+
+            </div>
+
+            <x-slot name="footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal"> OK </button>
+            </x-slot>
+            
+        </x-cms-modal>
+        {{-- End modal --}}
+    
+        {{-- required hidden fields --}}
+        {{-- <INPUT type="hidden" name="{{$name}}[type]" value="{{$type}}" /> --}}
+
+    </div>
+
+
+</div>
+
+@push('scripts')
+
+<script>
+
+    $(document).ready(function() { 
+        //alert('ok');
+        $('#{{ $rowid }}').stackeditorrow();
+    });
+
+</script>
+
+
+@endpush
