@@ -1,0 +1,28 @@
+{
+  "name": "ascentcreative/stackeditor",
+  "description": "Library for the CMS Stack Editor - separate from the main CMS for now",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Ascent Creative",
+      "email": "info@ascent-creative.co.uk"
+    }
+  ],
+  "require": {
+    "matthiasmullie/minify": "^1.3",
+    "spatie/laravel-permission": "^4.0",
+    "doctrine/dbal": "^3.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "AscentCreative\\StackEditor\\": "src"
+    }
+  },
+  "extra": {
+    "laravel": {
+        "providers": [
+            "AscentCreative\\StackEditor\\StackEditorServiceProvider"
+        ]
+    }
+}
+}
