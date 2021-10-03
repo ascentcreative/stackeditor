@@ -120,7 +120,7 @@ var StackEditor = {
 
             // console.log($(this.element).find('.block-edit'));
 
-            var fldname = $(this.element).attr('name');
+            var fldname = $(this.element).attr('name') + '[rows]';
 
             // reapply field indexes to represent reordering
             $(this.element).find('.row-edit').each(function(idx) {

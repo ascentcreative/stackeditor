@@ -13,22 +13,27 @@
     
         if(is_null($value) || $value == '') {
 
-            $obj =  [ 
+            $obj =  [ 'rows' => [
                     
-                    (object)[
-                                'type'=>'row',
-                                'bgcolor'=>'',
-                                // 'items'=> [
-                                //     (object) [
-                                //         'type'=>'text',
-                                //         'content'=>''
-                                //     ]
+                        (object)[
+        
+                                    'type'=>'row',
+                                    'bgcolor'=>'transparent',
+                                    // 'items'=> [
+                                    //     (object) [
+                                    //         'type'=>'text',
+                                    //         'content'=>''
+                                    //     ]
 
-                                // ]
-                    ]
+                                    // ]
+                        ]
+
+                ]
             ];
 
             $value = (object) $obj;
+
+            // dd($value);
 
         }
 
@@ -79,14 +84,14 @@
 
         {{-- for each row, show the relevant edit blade --}}
         <div class="stack-rows">
-        @foreach($value as $key=>$row)
+        @foreach($value->rows as $key=>$row)
             
-            <x-stackeditor-row name="{{ $safename }}[{{$key}}]" :value="$row">
+            <x-stackeditor-row name="{{ $safename }}[rows][{{$key}}]" :value="$row">
 
                 @isset($row->blocks)
                     @foreach($row->blocks as $idx=>$block)
 
-                        <x-stackeditor-block type="{{ $block->type }}" name="{{ $safename }}[{{$key}}][blocks][{{$idx}}]" :value="$block">
+                        <x-stackeditor-block type="{{ $block->type }}" name="{{ $safename }}[rows][{{$key}}][blocks][{{$idx}}]" :value="$block">
 
                         </x-stackeditor-block>
 
@@ -107,6 +112,7 @@
         This field receives the serialized & stringified JSON on save.
         Using the main field name means that all the actual heirarchical fields are replaced / ignored
     --}}
+    <input type="hidden" name="{{$name}}[unid]" value="{{ $value->unid ?? uniqid() }}"/>
     <input type="hidden" name="{{$name}}" class="stack-output"/>
     {{-- <textarea name="{{$name}}" class="stack-output" style="width: 100%; height: 400px"></textarea> --}}
 

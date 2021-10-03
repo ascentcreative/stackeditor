@@ -132,6 +132,19 @@
 
 }
 
+.block .block-settings {
+  
+    position: absolute;
+    bottom: 30px; 
+    right: 5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 100px;
+    z-index: 100;
+    color: inherit;
+
+}
+
 .cke_focus:focus-visible {
     outline: none !important;
 }

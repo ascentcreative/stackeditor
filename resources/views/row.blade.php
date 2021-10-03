@@ -59,7 +59,7 @@
                 {{-- <x-cms-form-checkbox type="" name="{{ $name }}[fullwidth]" label="Full Width?" :value="$value->fullwidth ?? ''">
                 </x-cms-form-checkbox> --}}
 
-                <x-cms-form-colour label="Background Colour" name="{{ $name }}[bgcolor]" :value="$value->bgcolor ?? 'white'" />
+                <x-cms-form-colour label="Background Colour" name="{{ $name }}[bgcolor]" :value="$value->bgcolor ?? 'transparent'" />
 
                 <x-cms-form-fileupload label="Background Image" name="{{ $name }}[bgimage]" :value="$value->bgimage ?? ''" />
 
@@ -78,6 +78,30 @@
                     <x-cms-form-input type="text" name="{{ $name }}[margin][left]" label="Left" :value="$value->margin->left ?? 0"/>
                     <x-cms-form-input type="text" name="{{ $name }}[margin][right]" label="Right" :value="$value->margin->right ?? 0"/>
                 </div>
+
+
+                <div class="border p-2">
+                    <div><strong>Block Options</strong></div>
+                    <x-cms-form-options type="select" name="{{ $name }}[alignitems]" label="Align Items" :value="$value->alignitems ?? 'normal'"
+                        :options="[
+                            'normal'=>'Normal',
+                            'flex-start'=>'Top',
+                            'center'=>'Middle',
+                            'flex-end'=>'Bottom',    
+                        ]"
+                        />
+
+                        <x-cms-form-options type="select" name="{{ $name }}[collapseorder]" label="Collapse Order" :value="$value->collapseorder ?? 'left-to-right'"
+                            :options="[
+                                'left-to-right'=>'Left to Right',
+                                'right-to-left'=>'Right to Left', 
+                            ]"
+                            >
+                            The order the blocks will drop into a column on mobile.
+                        </x-cms-form-options>
+
+
+                </div>
         
 
 
@@ -92,6 +116,7 @@
         {{-- End modal --}}
     
         {{-- required hidden fields --}}
+        <input type="hidden" class="row-unid" name="{{ $name }}[unid]" value="{{ $value->unid ?? uniqid() }}" />
         {{-- <INPUT type="hidden" name="{{$name}}[type]" value="{{$type}}" /> --}}
 
     </div>

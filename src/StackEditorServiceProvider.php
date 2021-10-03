@@ -16,6 +16,10 @@ class StackEditorServiceProvider extends ServiceProvider
         __DIR__.'/../config/stackeditor.php', 'stackeditor'
     );
 
+
+    // Register the helpers php file which includes convenience functions:
+    require_once (__DIR__.'/../helpers/stackeditor-helpers.php');
+
   }
 
   public function boot()

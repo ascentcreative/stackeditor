@@ -167,7 +167,7 @@ var StackEditorRow = {
 
             blockid = $(this.element).find('.block').length;
 
-            blockname = stackname + "[" + rowid + "][blocks][" + blockid + "]";
+            blockname = stackname + "[rows][" + rowid + "][blocks][" + blockid + "]";
 
             console.log(blockname);
 
@@ -193,7 +193,7 @@ var StackEditorRow = {
 
             // console.log($(this.element).find('.block-edit'));
 
-            var fldname = $(this.element).parents('.stackeditor').attr('name');
+            var fldname = $(this.element).parents('.stackeditor').attr('name') + '[rows]';
 
             console.log($(this.element).parents('.row-edit'));
 

@@ -17,4 +17,5 @@ Route::middleware(['web'])->namespace('AscentCreative\CMS\Controllers')->group(f
 
     });
 
+
 });
