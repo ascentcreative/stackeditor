@@ -33,6 +33,8 @@ class StackEditorServiceProvider extends ServiceProvider
 
     $this->bootComponents();
 
+    $this->bootPublishes();
+
   }
 
   
