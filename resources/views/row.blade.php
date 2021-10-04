@@ -26,9 +26,9 @@
                 </div>
             </div>
          
-            {{-- <div style="flex-basis: 100%; flex-shrink: 1">
+            <div style="flex-basis: 100%; flex-shrink: 1">
                 @yield('row-actions')
-            </div> --}}
+            </div>
          
 
             <A href="#" class="row-open-settings bi-gear" data-toggle="modal" data-target="#{{ $rowid }}-settings"></A>
@@ -71,7 +71,7 @@
                     <x-cms-form-input type="text" name="{{ $name }}[padding][right]" label="Right" :value="$value->padding->right ?? 0"/>
                 </div>
 
-                <div class="border p-2">
+                <div class="border p-2 mb-2">
                     <div><strong>Margin</strong></div>
                     <x-cms-form-input type="text" name="{{ $name }}[margin][top]" label="Top" :value="$value->margin->top ?? 0"/>
                     <x-cms-form-input type="text" name="{{ $name }}[margin][bottom]" label="Bottom" :value="$value->margin->bottom ?? 0"/>
@@ -81,7 +81,7 @@
 
 
                 <div class="border p-2">
-                    <div><strong>Block Options</strong></div>
+                    <div><strong>Block Display Options</strong></div>
                     <x-cms-form-options type="select" name="{{ $name }}[alignitems]" label="Align Items" :value="$value->alignitems ?? 'normal'"
                         :options="[
                             'normal'=>'Normal',
