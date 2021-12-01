@@ -84,23 +84,52 @@
 
         {{-- for each row, show the relevant edit blade --}}
         <div class="stack-rows">
-        @foreach($value->rows as $key=>$row)
+
+        @if(!isset($value->rows))
+    
+            @php
+                $migrate = [];
+
+                foreach($value as $row) {
+
+                    if(isset($row->items)) {
+                        $row->blocks = $row->items;
+                        unset($row->items);
+                    } else {
+
+                        $row->blocks = [$row];
+
+                    }
+
+                    $migrate['rows'][] = $row;
+
+                }
+
+                $value = (object) $migrate;
             
-            <x-stackeditor-row name="{{ $safename }}[rows][{{$key}}]" :value="$row">
+            @endphp
 
-                @isset($row->blocks)
-                    @foreach($row->blocks as $idx=>$block)
+        @endif
 
-                        <x-stackeditor-block type="{{ $block->type }}" name="{{ $safename }}[rows][{{$key}}][blocks][{{$idx}}]" :value="$block">
+            @foreach($value->rows as $key=>$row)
+                
+                <x-stackeditor-row name="{{ $safename }}[rows][{{$key}}]" :value="$row">
 
-                        </x-stackeditor-block>
+                    @isset($row->blocks)
+                        @foreach($row->blocks as $idx=>$block)
 
-                    @endforeach
-                @endisset
+                            <x-stackeditor-block type="{{ $block->type }}" name="{{ $safename }}[rows][{{$key}}][blocks][{{$idx}}]" :value="$block">
 
-            </x-stackeditor-row>
+                            </x-stackeditor-block>
 
-        @endforeach
+                        @endforeach
+                    @endisset
+
+                </x-stackeditor-row>
+
+            @endforeach
+
+      
         </div>
 
   
