@@ -61,7 +61,7 @@ class StackEditorServiceProvider extends ServiceProvider
       ], 'public');
 
       $this->publishes([
-        __DIR__.'/config/stack.php' => config_path('stackeditor.php'),
+        __DIR__.'/../config/stackeditor.php' => config_path('stackeditor.php'),
       ]);
 
     }
