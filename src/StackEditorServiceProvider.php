@@ -35,6 +35,8 @@ class StackEditorServiceProvider extends ServiceProvider
 
     $this->bootPublishes();
 
+    $this->bootAssets();
+
   }
 
   
@@ -48,6 +50,22 @@ class StackEditorServiceProvider extends ServiceProvider
 
   }
 
+
+  /**
+   * 
+   * inject required css / js into main view stacks
+   * 
+   * @return [type]
+   */
+  public function bootAssets() {
+    
+    view()->composer('cms::base', function ($view) {
+
+        $view->with('packagecss',['stackcss']); 
+
+    });
+
+  }
 
 
 

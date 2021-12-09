@@ -8,7 +8,7 @@
 
     </div>
 
-    <div class="row-content blocks" id="">
+    <div class="row-content blocks" id="" style="width: 100%;">
         {{ $slot }}
         {{-- @yield('row-content') --}}
     </div>
@@ -17,7 +17,7 @@
 
         <div class="controls">
 
-            <div class="btn-group dropleft">
+            {{-- <div class="btn-group dropleft">
                 <A href="#" class="row-add-block-menu bi-plus-circle-fill" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></A>
                 <div class="dropdown-menu">
                     <A href="#" class="row-add-block dropdown-item bi-card-text" data-block-type="text"> Text</A>
@@ -25,7 +25,9 @@
                     <A href="#" class="row-add-block dropdown-item bi-camera-reels-fill" data-block-type="video"> Video</A>
                 </div>
             </div>
-         
+          --}}
+
+          
             <div style="flex-basis: 100%; flex-shrink: 1">
                 @yield('row-actions')
             </div>
@@ -59,7 +61,7 @@
                 {{-- <x-cms-form-checkbox type="" name="{{ $name }}[fullwidth]" label="Full Width?" :value="$value->fullwidth ?? ''">
                 </x-cms-form-checkbox> --}}
 
-                <x-cms-form-colour label="Background Colour" name="{{ $name }}[bgcolor]" :value="$value->bgcolor ?? 'transparent'" />
+                <x-cms-form-colour label="Background Colour" name="{{ $name }}[bgcolor]" :value="$value->bgcolor ?? 'transparent'" elementClass="row-bgcolor"/>
 
                 <x-cms-form-fileupload label="Background Image" name="{{ $name }}[bgimage]" :value="$value->bgimage ?? ''" />
 
@@ -88,6 +90,7 @@
                             'flex-start'=>'Top',
                             'center'=>'Middle',
                             'flex-end'=>'Bottom',    
+                            'stretch'=>'Match Heights'
                         ]"
                         />
 
@@ -130,8 +133,23 @@
 
     $(document).ready(function() { 
         //alert('ok');
-        $('#{{ $rowid }}').stackeditorrow();
+        $('#{{ $rowid }}').stackeditorrow();        
     });
+
+    
+    var darkOrLight = function(red, green, blue) {
+        var brightness;
+        brightness = (red * 299) + (green * 587) + (blue * 114);
+        brightness = brightness / 255000;
+
+        // values range from 0 to 1
+        // anything greater than 0.5 should be bright enough for dark text
+        if (brightness >= 0.5) {
+            return "dark-text";
+        } else {
+            return "light-text";
+        }
+    }
 
 </script>
 

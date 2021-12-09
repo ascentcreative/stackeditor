@@ -17,6 +17,7 @@ class Stack extends Component
     public $wrapper;
     public $class;
 
+    public $model;
 
 
     /**
@@ -25,7 +26,8 @@ class Stack extends Component
      * @return void
      */
     public function __construct($label, $name, $value, $previewable = true,
-                        $wrapper='bootstrapformgroup', $class=''        
+                        $wrapper='bootstrapformgroup', $class='',     
+                        $model = null   
                     )
     {
        
@@ -37,6 +39,18 @@ class Stack extends Component
 
         $this->wrapper = $wrapper;
         $this->class = $class;
+
+        try {
+            if (!is_string($model)) {
+                $this->model = get_class($model);
+            } else {
+                $this->model = $model;
+            }
+        } catch (Exception $e) {
+            $this->model = null;
+        }
+       
+
 
     }
 

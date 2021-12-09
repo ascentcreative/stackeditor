@@ -102,13 +102,13 @@
 
 .block .block-handle {
   
-    position: absolute;
+    /* position: absolute;
     top: 5px; 
     right: 5px;
     width: 20px;
     height: 20px;
     border-radius: 100px;
-    z-index: 100;
+    z-index: 100; */
     cursor: grab;
 
 }
@@ -121,28 +121,44 @@
 
 .block .block-delete {
   
-    position: absolute;
+    /* position: absolute;
     bottom: 5px; 
     right: 5px;
     width: 20px;
     height: 20px;
     border-radius: 100px;
-    z-index: 100;
+    z-index: 100; */
     color: inherit;
 
 }
 
 .block .block-settings {
   
-    position: absolute;
+    /* position: absolute;
     bottom: 30px; 
     right: 5px;
     width: 20px;
     height: 20px;
     border-radius: 100px;
-    z-index: 100;
+    z-index: 100; */
     color: inherit;
 
+}
+
+.block {
+    min-height: 100px;
+}
+
+.block .block-actions {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    bottom: 5px;
+    /* border: 1px solid; */
+}
+
+.block .block-actions a {
+    color: inherit;
 }
 
 .cke_focus:focus-visible {
@@ -209,4 +225,97 @@
     border-radius: 10px;
     font-size: 30px;
 }
+
+/* text block: */
+.block-text-edit {
+    background-color: white; 
+    height: calc(100% + 40px); 
+    margin: -20px -40px -20px -20px;
+}
+
+.row-has-bgcolor .block-text-edit,
+.block-has-bgcolor .block-text-edit
+ {
+    background: none;
+}
+
+
+.blocks .placeholder {
+    
+    /* border: 1px solid; */
+    
+    flex-shrink: 1;
+    flex-grow: 0;
+    position: relative;
+
+    cursor: pointer;
+
+}
+
+.blocks .placeholder {
+    min-height: 100px;
+}
+
+.blocks .placeholder-inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    xcontent: 'NEW BLOCK...';
+    position: absolute;
+    top: 0px;
+    left: 5px;
+    right: 5px;
+    bottom: 0px;
+    border-radius: 5px;
+    background: rgba(0,0,0,0.05);
+  
+    padding: 20px;
+    text-align: center;
+    color: #777;
+
+    border: 1px solid #ccc;
+}
+
+.blocks .placeholder-icon {
+    font-size: 30px;
+    color: #777;
+}
+
+
+.blocks .placeholder.ui-droppable-hover .placeholder-inner {
+    box-shadow: 0 0 3px 3px rgba(0,0,255, 0.2);
+}
+
+.blocks .placeholder.cols-1 .placeholder-label, 
+.blocks .placeholder.cols-2 .placeholder-label {
+    display:none;
+}
+
+
+.blocks .inbetweener {
+    position: relative;
+    margin-left: -5px;
+    width: 10px;
+    margin-right: -5px;
+    margin-top: -3px;
+    margin-bottom: -3px;
+    z-index: 500;
+    display: flex;
+    justify-content:center;
+}
+
+.blocks .inbetweener:after {
+    content: '';
+    display: block;
+    width: 4px;
+    border-radius: 8px;
+    /* background: white; */
+    height: 100%;
+}
+
+.blocks .inbetweener.ui-droppable-hover:after {
+    background: grey;
+}
+
 

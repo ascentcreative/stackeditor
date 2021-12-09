@@ -18,22 +18,13 @@
                         (object)[
         
                                     'type'=>'row',
-                                    'bgcolor'=>'transparent',
-                                    // 'items'=> [
-                                    //     (object) [
-                                    //         'type'=>'text',
-                                    //         'content'=>''
-                                    //     ]
-
-                                    // ]
+                                    'bgcolor'=>'transparent'
                         ]
 
                 ]
             ];
 
             $value = (object) $obj;
-
-            // dd($value);
 
         }
 
@@ -85,6 +76,7 @@
         {{-- for each row, show the relevant edit blade --}}
         <div class="stack-rows">
 
+        {{-- MIGRATION CODE --}}
         @if(!isset($value->rows))
     
             @php
@@ -92,15 +84,45 @@
 
                 foreach($value as $row) {
 
+                    // dump($row);
+
                     if(isset($row->items)) {
                         $row->blocks = $row->items;
                         unset($row->items);
                     } else {
 
-                        $row->blocks = [$row];
+                        // dump([$row]);
+                        if($row->type != 'row') {
+
+                            $new = (object) [];
+                            foreach($row as $key=>$val) {
+                                $new->$key = $val;
+                                // unset($row->$key);
+                            }
+
+                         
+                            $row->blocks = [$new];
+                        }
 
                     }
 
+                   
+
+                    //migrate the 'start' column numbers. 
+                    if(isset($row->blocks)) {
+                        $start = 0;
+                        foreach($row->blocks as $block) {
+                            try {
+                                $block->cols->start = $start;
+                                $start = $start + $block->cols->width;
+                            } catch (Exception $e) {
+                                $block->cols->start = 0;
+                                $block->cols->width = 12;
+                            }
+                        }
+                     }
+
+                    
                     $migrate['rows'][] = $row;
 
                 }
@@ -110,6 +132,7 @@
             @endphp
 
         @endif
+        {{-- END MIGRATION CODE --}}
 
             @foreach($value->rows as $key=>$row)
                 
@@ -146,6 +169,38 @@
     {{-- <textarea name="{{$name}}" class="stack-output" style="width: 100%; height: 400px"></textarea> --}}
 
     </div>
+
+    <x-cms-modal modalid="block-picker" title="Select a Block Type:">
+        {{-- Block types: --}}
+        @foreach(discoverBlockTypes($model) as $cat=>$types)
+
+            @if(!$loop->first)
+                <div class="dropdown-divider"></div>
+            @endif
+
+            <div class="block-group row">
+                <div class="block-group-name col-2 pt-2"><h5 style="font-weight: 300">{{ $cat }}</h5></div>
+                <div class="block-group-blocks col-10">
+
+                    @foreach($types as $type)
+
+                        <a class="stack-add-row dropdown-item text-sm btn-option display-block p-2 w-100" href="#" data-block-type="{{ $type['bladePath'] }}" data-block-field="{{ $safename }}">
+                            <strong>{{ $type['name'] }}</strong><span class="text-muted"> - {{ $type['description'] }}</span>
+                        </a>
+
+                    @endforeach
+
+                </div>
+
+            </div>          
+
+        @endforeach
+
+        <x-slot name="footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal"> Cancel </button>
+        </x-slot>
+        
+    </x-cms-modal>
 
 
 
@@ -214,3 +269,5 @@
 @endpush
 
 @section('label'){{$tmp_label}}@overwrite
+                   
+                  

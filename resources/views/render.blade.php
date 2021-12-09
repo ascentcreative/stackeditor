@@ -1,81 +1,92 @@
 
 @isset($content)
 
-    @foreach(json_decode($content)->rows as $item)
+    @php $rows = json_decode($content)->rows @endphp
 
-        @if($item->published ?? true)
+    @isset($rows)
 
-           <div class="stack-row" id="row-{{ $item->unid }}" 
+        @foreach($rows as $item)
 
-                
-                @if(!Agent::isMobile())
-                    @if(isset($item->bgimage) && $item->bgimage != '') 
-                        {{-- Parallax image for non-mobile users. --}}
-                        data-android-fix="false" class="parallax-window" data-parallax="scroll" data-image-src="/storage/{{ \AscentCreative\CMS\Models\File::find($item->bgimage)->filepath }}"
-                    @endif
-                @endif         
+            @if($item->published ?? true)
 
-                >
+                @isset($item->blocks)
 
-                {{-- To allow for blended BG colours over images, put the color as an overlaid div. --}}
-                @if(isset($item->bgcolor) && $item->bgcolor != '' && isset($item->bgimage) && $item->bgimage != '') 
-                    <div class="bgcolor" style="background-color: {{ $item->bgcolor }}; position: absolute; top: 0; bottom: 0; left: 0; right: 0"></div>
-                @endif
+                    <div class="stack-row" id="row-{{ $item->unid }}" 
 
-            {{-- @if(!isset($item->fullwidth) || !$item->fullwidth)  --}}
-                <div 
-                    @if(!isset($item->contentwidth) || $item->contentwidth != '100%')
-                    class="centralise" 
-                    @endif
-                    @if(isset($item->contentwidth) && $item->contentwidth != '')
-                    style="max-width: {{ $item->contentwidth }}"
-                    @endif
-                    >
-            {{-- //@endif --}}
-            
-                <div class="row" xstyle="padding: 0px 0 20px">
+                            
+                            @if(!Agent::isMobile())
+                                @if(isset($item->bgimage) && $item->bgimage != '') 
+                                    {{-- Parallax image for non-mobile users. --}}
+                                    data-android-fix="false" class="parallax-window" data-parallax="scroll" data-image-src="/storage/{{ \AscentCreative\CMS\Models\File::find($item->bgimage)->filepath }}"
+                                @endif
+                            @endif         
 
-                    @isset($item->blocks)
+                            >
 
-                        @php 
-                            if($item->collapseorder == 'right-to-left') {
-                                $blocks = array_reverse((array) $item->blocks);
-                            } else {
-                                $blocks = $item->blocks;
-                            }
+                            {{-- To allow for blended BG colours over images, put the color as an overlaid div. --}}
+                            @if(isset($item->bgcolor) && $item->bgcolor != '' && isset($item->bgimage) && $item->bgimage != '') 
+                                <div class="bgcolor" style="background-color: {{ $item->bgcolor }}; position: absolute; top: 0; bottom: 0; left: 0; right: 0"></div>
+                            @endif
+
+                        {{-- @if(!isset($item->fullwidth) || !$item->fullwidth)  --}}
+                            <div 
+                                @if(!isset($item->contentwidth) || $item->contentwidth != '100%')
+                                class="centralise" 
+                                @endif
+                                @if(isset($item->contentwidth) && $item->contentwidth != '')
+                                style="max-width: {{ $item->contentwidth }}"
+                                @endif
+                                >
+                        {{-- //@endif --}}
                         
-                        @endphp
+                            <div class="row">
 
-                        
-        
-                        @foreach($blocks as $block) 
-                    
-                            <div class="stack-block col-md-{{$block->cols->width}} xcol-sm-{{$block->cols->width * 2}} @if($block->cols->width < 6) hyphenbreak @endif">
                                 
-                                <div id="block-{{ $block->unid }}">
+
+                                    @php 
+                                        if($item->collapseorder == 'right-to-left') {
+                                            $blocks = array_reverse((array) $item->blocks);
+                                        } else {
+                                            $blocks = $item->blocks;
+                                        }
+                                    
+                                    @endphp
+
+                                    
                     
-                                    @includeFirst(['stackeditor.block.' . $block->type . '.show', 'cms::stackeditor.block.' . $block->type . '.show', 'stackeditor::block.' . $block->type . '.show'], ['data'=>$item])
+                                    @foreach($blocks as $block) 
+                                
+                                        <div id="xblock-{{ $block->unid }}" style="" class="stack-block col-md-{{$block->cols->width}} col-sm-{{$block->cols->width * 2}} @if($block->cols->width < 6) zhyphenbreak @endif">
+                                            
+                                            <div id="block-{{ $block->unid }}" style="height: 100%;">
+                                
+                                                @includeFirst(stackeditorBladePaths($block->type, 'show'), ['data'=>$item])
 
-                                </div>
+                                            </div>
 
+                                        </div>
+                                
+                                    @endforeach
+                            
+                            
                             </div>
-                    
-                        @endforeach
-                    @endisset
+
+                        
+                        {{-- //@if(!isset($item->fullwidth) || !$item->fullwidth)  --}}
+                            </div> 
+                        {{-- @endif --}}
                 
-                </div>
 
-            
-            {{-- //@if(!isset($item->fullwidth) || !$item->fullwidth)  --}}
-                </div> 
-            {{-- @endif --}}
-    
+                    </div>
 
-        </div>
+                @endisset
 
-        @endif
-       
-    @endforeach
+            @endif
+        
+        @endforeach
+
+    @endisset
+
 @endisset
 
 @push('styles')

@@ -6,9 +6,17 @@
 
     <div class="block-content" style="height: 100%;">
 
-        <div class="block-handle bi-arrows-move xbi-arrow-left-right"></div>
-        <a href="" class="block-settings bi-gear" data-toggle="modal" data-target="#{{ $blockid }}-settings"></a>
-        <a href="" class="block-delete bi-trash"></a>
+        <div class="block-actions flex flex-column" style="justify-content: space-between">
+            <div>
+                <div class="block-handle bi-arrows-move xbi-arrow-left-right"></div>
+            </div>
+
+            <div class="flex flex-column" style="flex-grow: 0">
+                <a href="" class="xblock-settings bi-gear" data-toggle="modal" data-target="#{{ $blockid }}-settings"></a>
+                <a href="" class="block-delete bi-trash"></a>
+            </div>
+        </div>
+       
         
         <div class="block-data" style="padding: 10px; width: 100%; padding-right: 30px; height: 100%;">
             @section('block-content')
@@ -17,7 +25,7 @@
         </div>
         
         <div style="display: none">
-            Cols = Start: <input type="text" name="{{ $name }}[cols][start]" class="block-col-start" value="{{ $value->cols->start ?? 1}}" /> 
+            Cols = Start: <input type="text" name="{{ $name }}[cols][start]" class="block-col-start" value="{{ $value->cols->start ?? 0}}" /> 
             Width: <input type="text" class="block-col-count" name="{{ $name }}[cols][width]" value="{{ $value->cols->width ?? 12 }}" />
             Type: <input type="text" class="block-type" name="{{ $name }}[type]" value="{{ $type }}" />
 
@@ -38,7 +46,7 @@
         @show
 
 
-            <x-cms-form-colour label="Background Colour" name="{{ $name }}[bgcolor]" :value="$value->bgcolor ?? 'transparent'" />
+            <x-cms-form-colour label="Background Colour" name="{{ $name }}[bgcolor]" :value="$value->bgcolor ?? 'transparent'" elementClass="block-bgcolor"/>
 
             <div class="border p-2 mb-2">
                 <div><strong>Padding</strong></div>
