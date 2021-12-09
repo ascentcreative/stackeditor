@@ -69,11 +69,42 @@ var StackEditor = {
             // (test for now - adds a new row block. Will need to be coded to ask user what block to add)
             $(this.element).on('click', '.stack-add-row', function() {
 
-                //var type = 'row';\
-            
-                var type = $(this).attr('data-block-type');
+                $('#block-picker').modal();
+
+
                 var field = $(this).attr('data-block-field'); //'content';
                 var idx = $(self.element).find('.row-edit').length;
+
+                $('#block-picker').one('click', 'a', function(e) {
+
+
+                    e.preventDefault();
+
+                    var type = $(this).data('block-type');
+                
+
+                    $('#block-picker').modal('hide');
+
+                    $.get('/admin/stack/make-row/' + type + '/' + field + '/' + idx, function(data) {
+                        // $(self.element).find('.stack-output').before(data);
+                        $(self.element).find('.stack-rows').append(data);
+                        self.updateIndexes();                
+                     });
+
+
+
+                });
+
+                 // if the user clicks outside the modal, ensure the click handler is removed
+                 $('#block-picker').on('hidden.bs.modal', function() {
+                    $('#block-picker').off('click', 'button');
+                });
+
+                return;
+
+                //var type = 'row';\
+            
+                
 
             //    alert(idx);
 

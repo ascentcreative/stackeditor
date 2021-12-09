@@ -36,8 +36,10 @@
 
         <div class="flex flex-between pb-2">
 
+        <A class="stack-add-row btn btn-secondary btn-sm bi-plus-circle-fill" data-block-field="{{ $safename }}" href="#">Add Row</A>
+
         <div class="btn-group dropright">
-            <A class="btn btn-secondary btn-sm dropdown-toggle" href="#" data-toggle="dropdown" >Add Row</A>
+           
             <div class="dropdown-menu dropdown-menu-right" style="">
 
                 <a class="stack-add-row dropdown-item text-sm btn-option" href="#" data-block-type="text" data-block-field="{{ $safename }}">Text</a>
