@@ -7,3 +7,10 @@
     {{-- <button class="button btn-sm btn btn-primary text-small">Change</button> <button class="button btn-sm btn btn-primary text-small">Options</button> --}}
 </div>
 @overwrite
+
+
+@section('block-settings')
+@overwrite
+
+@section('block-actions')
+@overwrite

@@ -4,3 +4,9 @@
     {{-- <x-cms-form-croppie width="800" label="" name="{{ $name }}[image]" value="{!! isset($value->image) ? $value->image : ''  !!}" wrapper="none"/> --}}
         New image...
 @overwrite
+
+@section('block-settings')
+@overwrite
+
+@section('block-actions')
+@overwrite

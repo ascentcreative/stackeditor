@@ -1,7 +1,5 @@
 @extends("stackeditor::block.base.edit")
 
-
-
 @section('block-content')
 
 
