@@ -8,7 +8,7 @@ class Image extends AbstractDescriptor {
 
     public static $name = 'Image';
 
-    public static $bladePath = 'image-new';
+    public static $bladePath = 'image';
 
     public static $description = "Upload an image - also supply Alt text and link URLs";
 
