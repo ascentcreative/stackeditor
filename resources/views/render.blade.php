@@ -1,7 +1,26 @@
 
 @isset($content)
 
-    @php $rows = json_decode($content)->rows @endphp
+    @php 
+    
+        if(is_string($content)) {
+            $content = json_decode($content); //, true);
+        } else {
+            // this feels like such a fudge but works... 
+            // used on validation fail when the incoming data is a pure array. 
+            // encode / decode makes it match the expected object style.
+            // works for now, but feels uncontrolled....
+            // dd(json_decode(json_encode($content));
+            $content = json_decode(json_encode($content));
+        }
+    
+      
+
+        // dd($content);
+
+        $rows = $content->rows;
+    
+    @endphp
 
     @isset($rows)
 

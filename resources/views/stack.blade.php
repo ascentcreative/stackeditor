@@ -163,15 +163,24 @@
 
 
     {{-- 
+        
+        OLD:
         This field receives the serialized & stringified JSON on save.
         Using the main field name means that all the actual heirarchical fields are replaced / ignored
+
+        NEW:
+        Stack-output field now hidden. For future validation updates, we mustn't convert the fields to JSON. 
+        Instead, we just save the array into the model and Laravel JSONs it.
+        There's some updated code in the Stack component to decode it correctly.
+
     --}}
     <input type="hidden" name="{{$name}}[unid]" value="{{ $value->unid ?? uniqid() }}"/>
-    <input type="hidden" name="{{$name}}" class="stack-output"/>
+    {{-- <input type="hidden" name="{{$name}}" class="stack-output"/> --}}
     {{-- <textarea name="{{$name}}" class="stack-output" style="width: 100%; height: 400px"></textarea> --}}
 
     </div>
 
+    
     <x-cms-modal modalid="block-picker" title="Select a Block Type:">
         {{-- Block types: --}}
         @foreach(discoverBlockTypes($model) as $cat=>$types)

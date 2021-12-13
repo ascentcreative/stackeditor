@@ -6,7 +6,11 @@ use Illuminate\Support\Facades\Storage;
 
 function getStackCSSFile($content, $model) {
 
-    $data = json_decode($content);
+    if(is_string($content)) {
+        $data = json_decode($content);
+    } else {
+        $data = $content;
+    }
  
     // check if we need to re-create the CSS (based on file date and model->updated_at)
     $path = '/storage/stackeditor/' . $data->unid . '.css';
@@ -41,7 +45,14 @@ function renderStackCSS($content) {
 
     $out = '';
     // foreach row:
-    $rows = json_decode($content)->rows;
+
+    if(is_string($content)) {
+        $data = json_decode($content);
+    } else {
+        $data = $content;
+    }
+
+    $rows = $data->rows;
     
     if(isset($rows)) {
         foreach($rows as $row) {
@@ -77,7 +88,39 @@ function discoverBlockTypes($model=null) : array {
         return [$item => []];
     })->toArray();
     
-    // now we have an array to populate, start discovering the classes:
+    foreach(discoverTypeDescriptors($model) as $class) {
+
+
+        $ref = new  ReflectionClass($class);
+        
+        // add the necessary data to the array - if:
+
+        // - Not explicitly disabled:
+       
+        if($class::isApplicable($model)) {
+            // add the details to the relevent category in the array
+            $aryBlockTypes[$class::getCategory()][] = [
+                        'name'=>$class::getName(),
+                        'description'=>$class::getDescription(),
+                        'bladePath'=>$class::getBladePath(),
+                ];
+
+
+        }
+    
+    }
+
+    // array_filter to only return the categories which have blocks
+    return array_filter($aryBlockTypes);
+
+}
+
+
+function discoverTypeDescriptors($model = null) : array {
+
+    $types = [];
+
+    // start discovering the classes:
     $paths = config('stackeditor.discovery_paths');
 
     $disabled = config('stackeditor.disabled_types');
@@ -90,43 +133,28 @@ function discoverBlockTypes($model=null) : array {
         foreach ($files as $file) {
 
             $class = getClassFullNameFromFile($file);
-           
-            $ref = new  ReflectionClass($class);
-            
-            // add the necessary data to the array - if:
 
-            // - Not explicitly disabled:
+            $ref = new  ReflectionClass($class);
+
             if(!in_array($class, $disabled)) {
                 // - Not an abstract class
                 if (!$ref->isAbstract()) {
                     // - Implements the correct interface (could be by extending the AbstractDescriptor class)
                     if($ref->implementsInterface(\AscentCreative\StackEditor\Contracts\TypeDescriptor::class)) {
                         // - is deemed applicable (perhaps to the supplied model, but there may be wider, global conditions coded in too)
-                        if($class::isApplicable($model)) {
-                            // add the details to the relevent category in the array
-                            $aryBlockTypes[$class::getCategory()][] = [
-                                    'name'=>$class::getName(),
-                                    'description'=>$class::getDescription(),
-                                    'bladePath'=>$class::getBladePath(),
-                            ];
-
-
-                        }
+                        $types[] = $class;
                     }
                 }
             }
 
         }
 
-
-
-
     }
 
-    // array_filter to only return the categories which have blocks
-    return array_filter($aryBlockTypes);
+     return $types;
 
 }
+
 
 
 function stackeditorBladePaths($type, $action) {
@@ -138,5 +166,17 @@ function stackeditorBladePaths($type, $action) {
         return $item . '.' . $type . '.' . $action;
 
     })->toArray();
+
+}
+
+
+function resolveDescriptor($type) {
+
+    $map = collect(discoverTypeDescriptors())->mapWithKeys(function($item, $key) {
+        $ref = new ReflectionClass($item);
+        return [$item::getBladePath() => $item];
+    })->toArray();
+
+    return ($map[$type]);
 
 }

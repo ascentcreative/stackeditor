@@ -87,4 +87,21 @@ abstract class AbstractDescriptor implements Contract {
     }
 
 
+     /**
+     * Return validation rules for the fields on the edit screen
+     * @return array
+     */
+    public static function rules() : array {
+        return [];
+    }
+
+    /**
+     * Return validation failure messages for the fields on the edit screen
+     * @return array
+     */
+    public static function messages() : array {
+        return [];
+    }
+
+
 }
