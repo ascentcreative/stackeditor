@@ -57,13 +57,13 @@ function renderStackCSS($content) {
     if(isset($rows)) {
         foreach($rows as $row) {
             // output the row's own CSS
-            $out .= view('stackeditor::css', ['id'=>'row-' . $row->unid, 'data'=>$row]);
+            $out .= view('stackeditor::css.row', ['id'=>'row-' . $row->unid, 'data'=>$row]);
 
             // for each block in the row:
             if(isset($row->blocks)) {
                 foreach($row->blocks as $block) {
                     // output the block's CSS
-                    $out .= view('stackeditor::css', ['id'=>'block-' . $block->unid, 'data'=>$block]);
+                    $out .= view('stackeditor::css.block', ['id'=>'block-' . $block->unid, 'data'=>$block]);
 
                 }
             }
