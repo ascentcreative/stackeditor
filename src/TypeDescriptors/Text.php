@@ -14,4 +14,8 @@ class Text extends AbstractDescriptor {
 
     public static $category = "General";
 
+    public static $defaults = [
+    
+    ];
+
 }

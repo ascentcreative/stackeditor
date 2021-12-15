@@ -12,6 +12,8 @@ class Block extends Component
     public $type;
     public $name;
     public $value;
+
+    public $defaults;
   
   //  public $wrapper;
   //  public $class;
@@ -26,9 +28,13 @@ class Block extends Component
     public function __construct($type, $name, $value)
     {
        
-       $this->type = $type;
+        $this->type = $type;
         $this->name = $name;
         $this->value = $value;
+
+        // work out the descriptor and load the defaults:
+        $this->defaults = resolveDescriptor($type)::getDefaults();
+
     
     }
 

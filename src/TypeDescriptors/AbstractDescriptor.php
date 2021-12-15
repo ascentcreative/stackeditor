@@ -19,6 +19,13 @@ abstract class AbstractDescriptor implements Contract {
     public static $applyTo = [];
     public static $excludeFrom = [];
 
+    public static $defaults = [];
+
+    public static $baseDefaults = [
+        'margin-top' => '20px',
+        'margin-bottom' => '20px',
+    ];
+
 
     /**
      * @return string
@@ -41,6 +48,11 @@ abstract class AbstractDescriptor implements Contract {
      */
     public static function getDescription() : string {
         return static::$description;
+    }
+
+
+    public static function getDefaults() : array {
+        return array_merge(static::$baseDefaults, static::$defaults);
     }
 
 

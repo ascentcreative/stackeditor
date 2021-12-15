@@ -19,9 +19,11 @@
        
         
         <div class="block-data" style="padding: 10px; width: 100%; padding-right: 30px; height: 100%;">
+
             @section('block-content')
                 BLOCK CONTENT - OVERRIDE ME
             @show
+            
         </div>
         
         <div style="display: none">
@@ -50,18 +52,18 @@
 
             <div class="border p-2 mb-2">
                 <div><strong>Padding</strong></div>
-                <x-cms-form-input type="text" name="{{ $name }}[padding][top]" label="Top" :value="$value->padding->top ?? 0"/>
-                <x-cms-form-input type="text" name="{{ $name }}[padding][bottom]" label="Bottom" :value="$value->padding->bottom ?? 0"/>
-                <x-cms-form-input type="text" name="{{ $name }}[padding][left]" label="Left" :value="$value->padding->left ?? 0"/>
-                <x-cms-form-input type="text" name="{{ $name }}[padding][right]" label="Right" :value="$value->padding->right ?? 0"/>
+                <x-cms-form-input type="text" name="{{ $name }}[padding][top]" label="Top" :value="$value->padding->top ?? ($defaults['padding-top'] ?? 0)"/>
+                <x-cms-form-input type="text" name="{{ $name }}[padding][bottom]" label="Bottom" :value="$value->padding->bottom ??  ($defaults['padding-bottom'] ?? 0)"/>
+                <x-cms-form-input type="text" name="{{ $name }}[padding][left]" label="Left" :value="$value->padding->left ??  ($defaults['padding-left'] ?? 0)"/>
+                <x-cms-form-input type="text" name="{{ $name }}[padding][right]" label="Right" :value="$value->padding->right ??  ($defaults['padding-right'] ?? 0)"/>
             </div>
 
             <div class="border p-2">
                 <div><strong>Margin</strong></div>
-                <x-cms-form-input type="text" name="{{ $name }}[margin][top]" label="Top" :value="$value->margin->top ?? 0"/>
-                <x-cms-form-input type="text" name="{{ $name }}[margin][bottom]" label="Bottom" :value="$value->margin->bottom ?? 0"/>
-                <x-cms-form-input type="text" name="{{ $name }}[margin][left]" label="Left" :value="$value->margin->left ?? 0"/>
-                <x-cms-form-input type="text" name="{{ $name }}[margin][right]" label="Right" :value="$value->margin->right ?? 0"/>
+                <x-cms-form-input type="text" name="{{ $name }}[margin][top]" label="Top" :value="$value->margin->top ??  ($defaults['margin-top'] ?? 0)"/>
+                <x-cms-form-input type="text" name="{{ $name }}[margin][bottom]" label="Bottom" :value="$value->margin->bottom ?? ($defaults['margin-bottom'] ?? 0)"/>
+                <x-cms-form-input type="text" name="{{ $name }}[margin][left]" label="Left" :value="$value->margin->left ??  ($defaults['margin-left'] ?? 0)"/>
+                <x-cms-form-input type="text" name="{{ $name }}[margin][right]" label="Right" :value="$value->margin->right ??  ($defaults['margin-right'] ?? 0)"/>
             </div>
     
 

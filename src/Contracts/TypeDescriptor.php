@@ -25,6 +25,11 @@ interface TypeDescriptor {
     public static function getDescription() : string;
 
 
+    /**
+     * @return array
+     */
+    public static function getDefaults() : array;
+
 
 
     /**
