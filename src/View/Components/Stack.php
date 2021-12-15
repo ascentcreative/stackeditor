@@ -98,19 +98,23 @@ class Stack extends Component
         $path['blocks'] = 'blocks';
         $path['blockIdx'] = '-1';
     
-        foreach($value->rows as $row) {
-            $path['rowIdx'] = $path['rowIdx'] + 1;
-            $path['blockIdx'] = -1;
+        if(isset($value->rows)) {
+            foreach($value->rows as $row) {
+                $path['rowIdx'] = $path['rowIdx'] + 1;
+                $path['blockIdx'] = -1;
 
-            foreach($row->blocks as $block) {
+                if(isset($row->blocks)) {
+                    foreach($row->blocks as $block) {
 
-                $path['blockIdx'] = $path['blockIdx'] + 1;
-              
-                $r = resolveDescriptor($block->type)::rules();
-                
-                foreach($r as $field=>$validators) {
+                        $path['blockIdx'] = $path['blockIdx'] + 1;
                     
-                    $rules[join('.', $path) . '.' . $field] = $validators;
+                        $r = resolveDescriptor($block->type)::rules();
+                        
+                        foreach($r as $field=>$validators) {
+                            
+                            $rules[join('.', $path) . '.' . $field] = $validators;
+                        }
+                    }
                 }
             }
         }
@@ -143,23 +147,28 @@ class Stack extends Component
         $path['blocks'] = 'blocks';
         $path['blockIdx'] = '-1';
     
-        foreach($value->rows as $row) {
-            $path['rowIdx'] = $path['rowIdx'] + 1;
-            $path['blockIdx'] = -1;
+        if(isset($value->rows)) {
 
-            foreach($row->blocks as $block) {
+            foreach($value->rows as $row) {
+                $path['rowIdx'] = $path['rowIdx'] + 1;
+                $path['blockIdx'] = -1;
 
-                $path['blockIdx'] = $path['blockIdx'] + 1;
-              
-                $r = resolveDescriptor($block->type)::messages();
-                
-                foreach($r as $field=>$validators) {
+                if(isset($row->blocks)) {
+                    foreach($row->blocks as $block) {
+
+                        $path['blockIdx'] = $path['blockIdx'] + 1;
                     
-                    $msgs[join('.', $path) . '.' . $field] = $validators;
+                        $r = resolveDescriptor($block->type)::messages();
+                        
+                        foreach($r as $field=>$validators) {
+                            
+                            $msgs[join('.', $path) . '.' . $field] = $validators;
+                        }
+
+
+                        // $rules = array_merge($rules, );
+                    }
                 }
-
-
-                // $rules = array_merge($rules, );
             }
         }
 
