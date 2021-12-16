@@ -25,16 +25,15 @@
             @show
             
         </div>
-        
-        <div style="display: none">
-            Cols = Start: <input type="text" name="{{ $name }}[cols][start]" class="block-col-start" value="{{ $value->cols->start ?? 0}}" /> 
-            Width: <input type="text" class="block-col-count" name="{{ $name }}[cols][width]" value="{{ $value->cols->width ?? 12 }}" />
-            Type: <input type="text" class="block-type" name="{{ $name }}[type]" value="{{ $type }}" />
-
-            <input type="hidden" class="block-unid" name="{{ $name }}[unid]" value="{{ $value->unid ?? uniqid() }}" />
-        </div>
-        
        
+    </div>
+
+    <div class="block-cols" tyle="display: none">
+        Cols = Start: <input type="text" name="{{ $name }}[cols][start]" class="block-col-start" value="{{ $value->cols->start ?? 0}}" /> 
+        Width: <input type="text" class="block-col-count" name="{{ $name }}[cols][width]" value="{{ $value->cols->width ?? 12 }}" />
+        Type: <input type="text" class="block-type" name="{{ $name }}[type]" value="{{ $type }}" />
+
+        <input type="hidden" class="block-unid" name="{{ $name }}[unid]" value="{{ $value->unid ?? uniqid() }}" />
     </div>
 
 

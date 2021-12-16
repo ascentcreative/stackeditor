@@ -418,12 +418,9 @@ var StackEditorRow = {
 
                     $(ui.element).data('block-last-width', ui.size.width);
 
-                    // sibTotalWidth = ui.originalSize.width + ui.originalElement.next().outerWidth();
-                    // console.log(ui.size);
-
-                    // console.log($(ui.element).parents('.blocks').width());
-
                     var colcount = 12; // change this to alter the number of cols in the row.
+
+                    console.log('width at start:' + $(ui.element).parents('.blocks').width());
 
                     var colsize = $(ui.element).parents('.blocks').width() / colcount;
                     // set the grid correctly - allows for window to be resized bewteen...
@@ -431,31 +428,12 @@ var StackEditorRow = {
 
                     // min width = 3 cols
                     $(ui.element).resizable('option', 'minWidth', (colsize * 3) -1);
+
+                    $(ui.element).data('originalStart', $(ui.element).find('.block-col-start').val());
+                    $(ui.element).data('originalCols', $(ui.element).find('.block-col-count').val());
+                    console.log($(ui.element).data('originalStart'));
                     
-                    // old code: assumed blocks would be contigous and only adjusted from the right.
-
-                    /*
-                    
-                    // calc the max possible width for this item (to prevent dragging larger than the row)
-                    // get the col counts of items in the row
-                    var filled = 0;
-                    $(ui.element).parents('.blocks').find('.block').each(function() {
-                        filled += parseInt($(this).find('.block-col-count').val());
-                        // console.log(filled);
-                    });
-                    // subtract the col count of this item
-                    filled -= $(ui.element).find('.block-col-count').val();
-
-                    // the difference is the max number of cols this can fill
-                    empty = (colcount - filled);
-
-                    // console.log(empty);
-
-                    // multiply to get a total max width.
-                    $(ui.element).resizable('option', 'maxWidth', colsize * (colcount - filled));
-
-                    */
-
+                  
 
                     // new code:
                     // needs to check if the current block has space to expand on the handle dragged.
@@ -497,111 +475,28 @@ var StackEditorRow = {
 
                 resize: function(event, ui) {
 
-                    // forget working out the cols... just in/decrement the existing values!
-                    var lastWidth = $(ui.element).data("block-last-width");
-                    var axis = $(ui.element).data('ui-resizable').axis;
-                    var cols = parseInt($(ui.element).find('.block-col-count').val());
-                    var start = parseInt($(ui.element).find('.block-col-start').val());
-
-                    if (ui.size.width > lastWidth) {
-                        $(ui.element).find('.block-col-count').val(cols+1);
-                        if (axis == 'w') {
-                            // console.log('adj start: ' + (start-1));
-                            // console.log($(ui.element).find('.block-col-start').val());
-                            $(ui.element).find('.block-col-start').val(start-1);
-                        }
-                    } else {
-                        $(ui.element).find('.block-col-count').val(cols-1);
-                        if (axis == 'w') {
-                            // console.log('adj start');
-                            $(ui.element).find('.block-col-start').val(start+1);
-                        }
-                    }
-
-                    $(ui.element).data('block-last-width', ui.size.width);
-
-
-
-                    // console.log('New Width = ' + $(ui.element).width());
-
+                    // Need to work out based on absolute values as we might lose events on a fast drag
                     
-                    // console.log('axis = ' + axis);
+                    // get the new cols width
+                    var newcols = Math.round(ui.size.width /  ($(ui.element).parents('.blocks').width() / 12), 2);
+                    $(ui.element).find('.block-col-count').val(newcols);
 
-                    //$(ui.element).width('1000px');
-
-                    // console.log($(ui.element).data('ui-resizable'));
-
-                   
-
-                    // // console.log(ui.size.width + " :: " + $(ui.element).parents('.blocks').width());
-
-                    // calculate the number of cols currently occupied and write to the col-count field
-                    // cols = (ui.size.width / $(ui.element).parents('.blocks').width()) * 12; // need to pull this from the same parameter as in 'start' - should probably widgetise this code...
-                    // // console.log(Math.round(cols));
-                    // $(ui.element).find('.block-col-count').val(Math.round(cols));
-
-                    // also set the 'start' column so we can work out gaps etc.
-                    // // console.log("UI = ");
-                 //   var start = Math.round( (ui.element.position().left / $(ui.element).parents('.blocks').width()) * 12);
-
-                 //   // console.log('** ' + ui.size.width + " // " + $(ui.element).outerWidth());
-                 //   // console.log('start calc: ' + (ui.element.position().left / $(ui.element).parents('.blocks').width()));
-
-                    // $(ui.element).find('.block-col-start').val(start);
-                  
-
-
-                   
-
-
-                    // //console.log('left = ' + (ui.size.width / $(ui.element).parents('.blocks').position()));
-                    // //start = (ui.size.width / $(ui.element).parents('.blocks').width()) * 12;
-
-
-
-                    // // also adjust a placeholder before or after the current block.
+                    var axis = $(ui.element).data('ui-resizable').axis;
+                    if(axis=="w") {
+                        // if dragging the left side, start will change - work out based on the change in column width
+                        $(ui.element).find('.block-col-start').val(
+                            parseInt($(ui.element).data('originalStart')) + (parseInt($(ui.element).data('originalCols') - newcols))
+                            );
+                    }
 
                     $(ui.element).css('left', '0px');
 
                     $(this).parents('.row-edit').stackeditorrow('manageGaps');
-                    
-
-                    // console.log(event);
-                    // console.log(ui);
-
-                    // // return e or w - the handle dragged.
-                    // console.log($(ui.element).data('ui-resizable').axis);
-                    // //if dragged 'w', a placeholder/gap is needed before the block.
-
-                    // // if dragged 'e', a placeholder/gap is needed after the block.
-
-                    // // need to see if a 'gap' already exists. Create one if not.
-
-                    // // or do we just call a "gapManagement" function on the row? 
-                    // // yeah, lets do that :)
-
-                    // console.log(widget);
-                    // console.log(self);
-                    // console.log(this);
-
-                    // 
-                      // if the previous block is not a placeholder, create one.
-            
-                    
-
-                    // $(this).parents('.row-edit').find('.block').each(function() {
-                    //     $(this).css('left', '0px');
-                    // });
+                
                     
                 },
 
                 stop: function(event, ui) {
-
-                    //$(ui.element).css('width', $(ui.element).width() + 'px');
-
-                    var pct = $(ui.element).width() / $(ui.element).parents('.items').width() *100;
-                    $(ui.element).css('width', pct + '%');
-
                     $(ui.element).trigger('change');
                 }
 
@@ -630,7 +525,7 @@ var StackEditorRow = {
 
             var self = this;
 
-            console.log('start ManageGaps');
+            // console.log('start ManageGaps');
 
             var iCol = 0;
             var colcount = 12; // change this to alter the number of cols in the row.
@@ -643,7 +538,7 @@ var StackEditorRow = {
                 var start = parseInt($(this).find('.block-col-start').val());
                 var count = parseInt($(this).find('.block-col-count').val());
 
-                console.log('start', start, isNaN(start));
+                // console.log('start', start, isNaN(start));
 
                 if(isNaN(start)) {
                     console.log(this);
@@ -661,8 +556,8 @@ var StackEditorRow = {
 
                     $(this).before(ph);
 
-                    console.log('ph', ph);
-                    console.log(ph.data());
+                    // console.log('ph', ph);
+                    // console.log(ph.data());
 
                 }
 
