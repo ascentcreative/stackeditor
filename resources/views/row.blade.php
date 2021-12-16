@@ -9,6 +9,7 @@
     </div>
 
     <div class="row-content blocks" id="" style="width: 100%;">
+
         {{ $slot }}
         {{-- @yield('row-content') --}}
     </div>

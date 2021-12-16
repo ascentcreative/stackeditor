@@ -18,7 +18,14 @@
                         (object)[
         
                                     'type'=>'row',
-                                    'bgcolor'=>'transparent'
+                                    'bgcolor'=>'transparent',
+                                    'blocks' => [
+                                        
+                                    (object) [
+                                        'type'=>'text'
+                                    ]
+                            ]
+
                         ]
 
                 ]
