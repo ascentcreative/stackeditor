@@ -4,7 +4,7 @@
 
 <div class="block" style="width: {{ (100 / 12) * ($value->cols->width ?? 12) }}%;">
 
-    <div class="block-content" style="height: 100%;">
+    <div class="block-content" @if(!env('STACKEDITOR_DEBUG', false)) style="height: 100%;" @endif>
 
         <div class="block-actions flex flex-column" style="justify-content: space-between">
             <div>
@@ -28,7 +28,7 @@
        
     </div>
 
-    <div class="block-cols" tyle="display: none">
+    <div class="block-cols" @if(!env('STACKEDITOR_DEBUG', false)) style="display: none" @endif>
         Cols = Start: <input type="text" name="{{ $name }}[cols][start]" class="block-col-start" value="{{ $value->cols->start ?? 0}}" /> 
         Width: <input type="text" class="block-col-count" name="{{ $name }}[cols][width]" value="{{ $value->cols->width ?? 12 }}" />
         Type: <input type="text" class="block-type" name="{{ $name }}[type]" value="{{ $type }}" />
@@ -45,7 +45,6 @@
         
            
         @show
-
 
             <x-cms-form-colour label="Background Colour" name="{{ $name }}[bgcolor]" :value="$value->bgcolor ?? 'transparent'" elementClass="block-bgcolor"/>
 
@@ -64,9 +63,6 @@
                 <x-cms-form-input type="text" name="{{ $name }}[margin][left]" label="Left" :value="$value->margin->left ??  ($defaults['margin-left'] ?? 0)"/>
                 <x-cms-form-input type="text" name="{{ $name }}[margin][right]" label="Right" :value="$value->margin->right ??  ($defaults['margin-right'] ?? 0)"/>
             </div>
-    
-
-
 
         </div>
 
