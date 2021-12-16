@@ -21,7 +21,14 @@ abstract class AbstractDescriptor implements Contract {
 
     public static $defaults = [];
 
+    public static $rowDefaults = [];
+
     public static $baseDefaults = [
+        'margin-top' => '20px',
+        'margin-bottom' => '20px',
+    ];
+
+    public static $baseRowDefaults = [
         'margin-top' => '20px',
         'margin-bottom' => '20px',
     ];
@@ -51,8 +58,18 @@ abstract class AbstractDescriptor implements Contract {
     }
 
 
+    /**
+     * @return array
+     */
     public static function getDefaults() : array {
         return array_merge(static::$baseDefaults, static::$defaults);
+    }
+
+    /**
+     * @return array
+     */
+    public static function getRowDefaults() : array {
+        return array_merge(static::$baseRowDefaults, static::$rowDefaults);
     }
 
 

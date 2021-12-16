@@ -12,6 +12,7 @@ class Row extends Component
   //  public $type;
     public $name;
     public $value;
+    public $defaults;
   
   //  public $wrapper;
   //  public $class;
@@ -23,12 +24,14 @@ class Row extends Component
      *
      * @return void
      */
-    public function __construct($name, $value)
+    public function __construct($name, $value, $defaults=[])
     {
        
     //    $this->type = $type;
         $this->name = $name;
         $this->value = $value;
+
+        $this->defaults = $defaults;
     
     }
 

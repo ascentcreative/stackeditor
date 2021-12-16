@@ -39,6 +39,7 @@
 
         </div>
 
+        {{-- @dump($defaults); --}}
       
         {{-- Wrap settings in a modal --}}
         <x-cms-modal modalid="{{ $rowid }}-settings" title="Row Settings" :closebutton="false">
@@ -51,7 +52,7 @@
 
                 <x-cms-form-checkbox type="" name="{{ $name }}[published]" label="Published?" uncheckedValue="0" checkedValue="1" :value="$value->published ?? 1"/>
 
-                <x-cms-form-input type="text" name="{{ $name }}[contentwidth]" label="Content Width" :value="$value->contentwidth ?? ''">
+                <x-cms-form-input type="text" name="{{ $name }}[contentwidth]" label="Content Width" :value="$value->contentwidth ?? ($defaults['contentwidth'] ?? '')">
                     The width of the screen to use for the content. Leave blank for the default centralised portion, or enter values in % or px. <br/>
                     <strong>Examples:<br/></strong>
                     <code>100%</code> will use the full screen width.<br/>
@@ -61,30 +62,30 @@
                 {{-- <x-cms-form-checkbox type="" name="{{ $name }}[fullwidth]" label="Full Width?" :value="$value->fullwidth ?? ''">
                 </x-cms-form-checkbox> --}}
 
-                <x-cms-form-colour label="Background Colour" name="{{ $name }}[bgcolor]" :value="$value->bgcolor ?? 'transparent'" elementClass="row-bgcolor"/>
+                <x-cms-form-colour label="Background Colour" name="{{ $name }}[bgcolor]" :value="$value->bgcolor ?? ($defaults['bgcolor'] ?? 'transparent')" elementClass="row-bgcolor"/>
 
                 <x-cms-form-fileupload label="Background Image" name="{{ $name }}[bgimage]" :value="$value->bgimage ?? ''" />
 
                 <div class="border p-2 mb-2">
                     <div><strong>Padding</strong></div>
-                    <x-cms-form-input type="text" name="{{ $name }}[padding][top]" label="Top" :value="$value->padding->top ?? 0"/>
-                    <x-cms-form-input type="text" name="{{ $name }}[padding][bottom]" label="Bottom" :value="$value->padding->bottom ?? 0"/>
-                    <x-cms-form-input type="text" name="{{ $name }}[padding][left]" label="Left" :value="$value->padding->left ?? 0"/>
-                    <x-cms-form-input type="text" name="{{ $name }}[padding][right]" label="Right" :value="$value->padding->right ?? 0"/>
+                    <x-cms-form-input type="text" name="{{ $name }}[padding][top]" label="Top" :value="$value->padding->top ?? ($defaults['padding-top'] ?? 0)"/>
+                    <x-cms-form-input type="text" name="{{ $name }}[padding][bottom]" label="Bottom" :value="$value->padding->bottom ?? ($defaults['padding-bottom'] ?? 0)"/>
+                    <x-cms-form-input type="text" name="{{ $name }}[padding][left]" label="Left" :value="$value->padding->left ?? ($defaults['padding-left'] ?? 0)"/>
+                    <x-cms-form-input type="text" name="{{ $name }}[padding][right]" label="Right" :value="$value->padding->right ?? ($defaults['padding-right'] ?? 0)"/>
                 </div>
 
                 <div class="border p-2 mb-2">
                     <div><strong>Margin</strong></div>
-                    <x-cms-form-input type="text" name="{{ $name }}[margin][top]" label="Top" :value="$value->margin->top ?? 0"/>
-                    <x-cms-form-input type="text" name="{{ $name }}[margin][bottom]" label="Bottom" :value="$value->margin->bottom ?? 0"/>
-                    <x-cms-form-input type="text" name="{{ $name }}[margin][left]" label="Left" :value="$value->margin->left ?? 0"/>
-                    <x-cms-form-input type="text" name="{{ $name }}[margin][right]" label="Right" :value="$value->margin->right ?? 0"/>
+                    <x-cms-form-input type="text" name="{{ $name }}[margin][top]" label="Top" :value="$value->margin->top ?? ($defaults['margin-top'] ?? 0)"/>
+                    <x-cms-form-input type="text" name="{{ $name }}[margin][bottom]" label="Bottom" :value="$value->margin->bottom ?? ($defaults['margin-bottom'] ?? 0)"/>
+                    <x-cms-form-input type="text" name="{{ $name }}[margin][left]" label="Left" :value="$value->margin->left ?? ($defaults['margin-left'] ?? 0)"/>
+                    <x-cms-form-input type="text" name="{{ $name }}[margin][right]" label="Right" :value="$value->margin->right ?? ($defaults['margin-right'] ?? 0)"/>
                 </div>
 
 
                 <div class="border p-2">
                     <div><strong>Block Display Options</strong></div>
-                    <x-cms-form-options type="select" name="{{ $name }}[alignitems]" label="Align Items" :value="$value->alignitems ?? 'normal'"
+                    <x-cms-form-options type="select" name="{{ $name }}[alignitems]" label="Align Items" :value="$value->alignitems ?? ($defaults['alignitems'] ?? 'normal')"
                         :options="[
                             'normal'=>'Normal',
                             'flex-start'=>'Top',
@@ -94,7 +95,7 @@
                         ]"
                         />
 
-                        <x-cms-form-options type="select" name="{{ $name }}[collapseorder]" label="Collapse Order" :value="$value->collapseorder ?? 'left-to-right'"
+                        <x-cms-form-options type="select" name="{{ $name }}[collapseorder]" label="Collapse Order" :value="$value->collapseorder ?? ($defaults['collapseorder'] ?? 'left-to-right')"
                             :options="[
                                 'left-to-right'=>'Left to Right',
                                 'right-to-left'=>'Right to Left', 
