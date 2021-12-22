@@ -1,0 +1,109 @@
+.ig-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.ig-grid-item {
+    background-position: center;
+    background-size: cover;
+    /* //aspect-ratio: 1; */
+    width: 100%;
+}
+
+.ig-grid-item:after {
+    content: '';
+    display: block;
+    width: 100%;
+    padding-top: 100%;;
+}
+
+.modal-igpost .modal-dialog {
+  /* max-height: 60vh; */
+  max-width: 1200px !important;
+}
+
+
+.modal-igpost .modal-content {
+    /* max-height: 60vh; */
+      margin-left: 100px;
+  margin-right: 100px; 
+}   
+
+.modal-igpost-outer {
+    display: flex;
+}
+
+
+
+
+/*
+.modal-igpost .modal-body {
+    height: 100%;
+}
+
+.modal-igpost-outer {
+    height: 100%;
+} */
+
+.igpost-nav A {
+    font-size: 40px;
+}
+
+.igpost-nav {
+    position: absolute;
+    top: calc(50% - 20px);
+}
+
+.igpost-nav-prev {
+    left: -75px; 
+}
+.igpost-nav-next {
+    right: -75px; 
+}
+
+.modal-igpost-imageframe {
+    flex-basis: 50%; flex-grow:0; 
+    /* background-color: #333;  */
+    xmargin: -20px 0 -20px -20px;
+   
+    /* height: 100%; */
+    max-height: 66vh;
+    padding-right: 20px
+}
+
+/* 
+.modal-igvideo .modal-igpost-outer {
+    flex-direction: column;
+}
+
+.modal-igvideo .modal-igpost-outer {
+    flex-direction: column;
+}
+
+
+.modal-igvideo .modal-igpost-imageframe {
+    height: 80vh; 400px;
+    max-height: 80vh; 400px;
+} */
+
+
+.modal-igpost-image, .modal-igpost-video {
+    height: 100%; width: 100%; object-fit:contain; object-position: center;
+}
+/* 
+.modal-igpost video {
+    background: none;
+    margin: 0px auto;
+    object-fit:contain; object-position: center;
+    height: 100%;
+} */
+
+.modal-igpost-text {
+    flex-basis: 50%; flex-grow:0; 
+    padding: 20px 50px; overflow: scroll;
+    
+    max-height: 66vh;
+    overflow: scroll;
+    border-left: 1px solid #ccc;
+}
