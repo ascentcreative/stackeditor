@@ -37,16 +37,6 @@
 }
 
 
-
-/*
-.modal-igpost .modal-body {
-    height: 100%;
-}
-
-.modal-igpost-outer {
-    height: 100%;
-} */
-
 .igpost-nav A {
     font-size: 40px;
 }
@@ -64,45 +54,23 @@
 }
 
 .modal-igpost-imageframe {
-    flex-basis: 50%; flex-grow:0; 
-    /* background-color: #333;  */
-    /* xmargin: -20px 0 -20px -20px; */
-   
-    /* height: 100%; */
+  
     max-height: 66vh;
-    /* padding-right: 20px */
+  
 }
-
-/* 
-.modal-igvideo .modal-igpost-outer {
-    flex-direction: column;
-}
-
-.modal-igvideo .modal-igpost-outer {
-    flex-direction: column;
-}
-
-
-.modal-igvideo .modal-igpost-imageframe {
-    height: 80vh; 400px;
-    max-height: 80vh; 400px;
-} */
 
 
 .modal-igpost-image, .modal-igpost-video {
-    height: 100%; width: 100%; object-fit:contain; object-position: top;
+    height: 100%; 
+    width: 100%; 
+    object-fit:contain; 
+    object-position: center;
 }
-/* 
-.modal-igpost video {
-    background: none;
-    margin: 0px auto;
-    object-fit:contain; object-position: center;
-    height: 100%;
-} */
+
 
 .modal-igpost-text {
-    flex-basis: 50%; flex-grow:0; 
-    padding: 20px 50px; overflow: scroll;
+    /* flex-basis: 50%; flex-grow:0;  */
+    padding: 20px 50px; 
     
     max-height: 66vh;
     overflow: scroll;
