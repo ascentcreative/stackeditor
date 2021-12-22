@@ -57,7 +57,7 @@
     display: none !important;
 }
 
-.modal-igpost:last-child .igpost-nav-prev {
+.modal-igpost:last-child .igpost-nav-next {
     display: none !important;
 }
 
