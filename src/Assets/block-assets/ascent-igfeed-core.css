@@ -53,6 +53,16 @@
     right: -75px; 
 }
 
+.modal-igpost:first-child .igpost-nav-prev {
+    display: none !important;
+}
+
+.modal-igpost:last-child .igpost-nav-prev {
+    display: none !important;
+}
+
+
+
 .modal-igpost-imageframe {
   
     max-height: 66vh;

@@ -30,55 +30,56 @@
 
 </div>
 
+<div class="ig-modals">
+    @foreach($igdata as $post) 
 
-@foreach($igdata as $post) 
+    <x-cms-modal modalid="ig-{{ $post['id'] }}" modalclass="modal-igpost modal-ig{{ $post['type'] }}" showFooter="0" showHeader="0" centered="1">
+    
+        <div class="igpost-nav igpost-nav-prev">
+            <a href="#" class="bi-arrow-left-circle-fill text-white"></a>
+        </div>
+        <div class="igpost-nav igpost-nav-next">
+            <a href="#" class="bi-arrow-right-circle-fill text-white"></a>
+        </div>
+        <div class="modal-igpost-outer">
+            <div class="modal-igpost-imageframe">
 
-<x-cms-modal modalid="ig-{{ $post['id'] }}" modalclass="modal-igpost modal-ig{{ $post['type'] }}" showFooter="0" showHeader="0" centered="1">
-   
-    <div class="igpost-nav igpost-nav-prev">
-        <a href="#" class="bi-arrow-left-circle-fill text-white"></a>
-    </div>
-    <div class="igpost-nav igpost-nav-next">
-        <a href="#" class="bi-arrow-right-circle-fill text-white"></a>
-    </div>
-    <div class="modal-igpost-outer">
-        <div class="modal-igpost-imageframe">
+                @switch($post['type'])
 
-            @switch($post['type'])
+                    @case('image')
 
-                @case('image')
+                        <img class="modal-igpost-image" src="{{ $post['url'] }}" /> 
 
-                    <img class="modal-igpost-image" src="{{ $post['url'] }}" /> 
+                        @break
 
-                    @break
+                    @case('video')
 
-                @case('video')
+                        <video class="modal-igpost-video" controls poster="{{ $post['thumbnail_url'] }}">
+                            
+                            <source src="{{ $post['url'] }}"
+                                    type="video/mp4">
 
-                    <video class="modal-igpost-video" controls poster="{{ $post['thumbnail_url'] }}">
-                        
-                        <source src="{{ $post['url'] }}"
-                                type="video/mp4">
+                        </video>
 
-                    </video>
-
-                    @break
-
-
-            @endswitch
+                        @break
 
 
+                @endswitch
+
+
+
+            </div>
+
+            <div class="modal-igpost-text" >
+                    {{-- Also need to implement some kind of link creation logic (@usernames, #hashtags, and maybe URL detection?) --}}
+                    {!! nl2br($post['caption']) !!}
+            </div>
 
         </div>
 
-        <div class="modal-igpost-text" >
-                {{-- Also need to implement some kind of link creation logic (@usernames, #hashtags, and maybe URL detection?) --}}
-                {!! nl2br($post['caption']) !!}
-        </div>
-
-    </div>
-
-</x-cms-modal>
-@endforeach
+    </x-cms-modal>
+    @endforeach
+</div>
 
 @push('styles')
     @style('/vendor/ascent/stackeditor/block-assets/ascent-igfeed-core.css')
