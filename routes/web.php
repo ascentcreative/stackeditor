@@ -3,7 +3,7 @@
 Route::middleware(['web'])->namespace('AscentCreative\CMS\Controllers')->group(function () {
 
 
-    Route::prefix('admin')->namespace('Admin')->middleware(['useAdminLogin', 'auth', 'can:administer'])->group(function() {
+    Route::prefix('admin')->namespace('Admin')->middleware(['auth', 'can:administer'])->group(function() {
 
         // rows have an initial block type.
         Route::get('/stack/make-row/{type}/{name}/{key}', function($type, $name, $key) {
