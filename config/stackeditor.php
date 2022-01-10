@@ -31,6 +31,5 @@ return [
     'disabled_types' => [
         
     ],
-
    
 ];
