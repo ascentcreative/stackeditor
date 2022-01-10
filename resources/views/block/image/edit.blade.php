@@ -1,7 +1,7 @@
 @extends("stackeditor::block.base.edit")
 
 @section('block-content')
-    <x-cms-form-croppie xwidth="800" label="" name="{{ $name }}[image]" value="{!! isset($value->image) ? $value->image : ''  !!}" wrapper="none"/>
+    <x-cms-form-croppie label="" name="{{ $name }}[image]" value="{!! isset($value->image) ? $value->image : ''  !!}" wrapper="none"/>
 @overwrite
 
 @section('block-settings')
@@ -24,3 +24,46 @@
 
 @section('block-actions')
 @overwrite
+
+
+@push('scripts')
+    <script>
+        $(document).on('change', '#block-{{ $value->unid }}-settings select', function() {
+            // alert($(this).val());
+            $(this).parents('.block').find('.block-data').removeClass('contain').removeClass('cover').addClass($(this).val());
+        });
+    </script>
+@endpush
+
+@push('styles')
+    <style>
+
+        .block-data .croppieupload {
+            min-height: 100%;
+        }
+
+        .block-data .croppieupload img {
+            width: 100%;
+            height: auto;
+            object-position: center;
+        }
+
+        .block-data.cover .croppieupload img {
+            position: absolute;
+            object-fit: cover;
+            object-position: center;
+            height: 100%;
+        }
+
+
+        .block-data.contain .croppieupload img {
+            position: absolute;
+            object-fit: contain;
+            object-position: center;
+            height: 100%;
+        }
+
+
+
+    </style>
+@endpush
