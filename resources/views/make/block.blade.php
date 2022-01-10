@@ -6,3 +6,4 @@
 
 @stack('lib')
 @stack('scripts')
+@stack('styles')
