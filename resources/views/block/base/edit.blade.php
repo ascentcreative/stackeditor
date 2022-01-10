@@ -1,5 +1,5 @@
 @php 
-    $blockid = "block-" . uniqid();
+    $blockid = "block-" . $value->unid;
 @endphp
 
 {{-- <div class="block" style="width: {{ (100 / 12) * ($value->cols->width ?? 12) }}%;"> --}}
@@ -35,7 +35,7 @@
         Width: <input type="text" class="block-col-count" name="{{ $name }}[cols][width]" value="{{ $value->cols->width ?? 12 }}" />
         Type: <input type="text" class="block-type" name="{{ $name }}[type]" value="{{ $type }}" />
 
-        <input type="hidden" class="block-unid" name="{{ $name }}[unid]" value="{{ $value->unid ?? uniqid() }}" />
+        <input type="hidden" class="block-unid" name="{{ $name }}[unid]" value="{{ $value->unid }}" />
     </div>
 
 
