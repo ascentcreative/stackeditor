@@ -15,7 +15,7 @@ function getStackCSSFile($content, $model) {
     // check if we need to re-create the CSS (based on file date and model->updated_at)
     $path = '/storage/stackeditor/' . $data->unid . '.css';
     $fullpath = $_SERVER['DOCUMENT_ROOT'] . $path;
-    $regen = false;
+    $regen = env('STACKEDITOR_FORCECSSREGEN') ?? false;
     if (!file_exists($fullpath)) {
         $regen = true;
     } else {

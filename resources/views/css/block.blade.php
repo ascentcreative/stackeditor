@@ -52,7 +52,29 @@
         padding-right: {{ $data->margin->right }};
     @endif 
 
+    {{-- grid-column: span {{ $data->cols->width }}; --}}
+    grid-column-start: {{ $data->cols->start+1 }};
+    grid-column-end: {{ $data->cols->start+1 + $data->cols->width }};
+
 }
+
+@media only screen and (max-width: 905px) {
+
+    #{{ $id }}-outer {
+        grid-column-start: 1;
+        grid-column-end: {{ $data->cols->width }};
+        {{-- grid-column: span {{ round($data->cols->width / 12 * 8)  }}; --}}
+    }
+
+}
+{{-- 
+@media only screen and (max-width: 500px) {
+
+    #{{ $id }}-outer {
+        grid-column: span {{ round($data->cols->width / 12 * 2)  }};
+    }
+
+} --}}
 
 #{{ $id }} .row {
     {{-- ALIGNMENT --}}

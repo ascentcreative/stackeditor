@@ -2,6 +2,9 @@
 
 } */
 
+.stack-rows {
+    margin: 0px auto;
+}
 
 .row-edit {
     /* padding: 20px;  */
@@ -48,8 +51,12 @@
 
     margin: 10px;
     flex-basis: 100%;
+    /* display: flex; */
 
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+
+    /* gap: 10px; */
 
 }
 
@@ -303,6 +310,7 @@
     z-index: 500;
     display: flex;
     justify-content:center;
+    border: 1px solid red;
 }
 
 .blocks .inbetweener:after {
