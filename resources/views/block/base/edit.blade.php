@@ -2,9 +2,7 @@
     $blockid = "block-" . $value->unid;
 @endphp
 
-{{-- <div class="block" style="width: {{ (100 / 12) * ($value->cols->width ?? 12) }}%;"> --}}
-
-    <div class="block" style="grid-column: {{ ($value->cols->start ?? 1) }} / span  {{ $value->cols->width ?? 12 }}">
+<div class="block" style="width: {{ (100 / 12) * ($value->cols->width ?? 12) }}%;">
 
     <div class="block-content" @if(!env('STACKEDITOR_DEBUG', false)) style="height: 100%;" @endif>
 
@@ -31,11 +29,11 @@
     </div>
 
     <div class="block-cols" @if(!env('STACKEDITOR_DEBUG', false)) style="display: none" @endif>
-        Cols = Start: <input type="text" name="{{ $name }}[cols][start]" class="block-col-start" value="{{ $value->cols->start ?? 1}}" /> 
+        Cols = Start: <input type="text" name="{{ $name }}[cols][start]" class="block-col-start" value="{{ $value->cols->start ?? 0}}" /> 
         Width: <input type="text" class="block-col-count" name="{{ $name }}[cols][width]" value="{{ $value->cols->width ?? 12 }}" />
         Type: <input type="text" class="block-type" name="{{ $name }}[type]" value="{{ $type }}" />
 
-        <input type="hidden" class="block-unid" name="{{ $name }}[unid]" value="{{ $value->unid }}" />
+        <input type="hidden" class="block-unid" name="{{ $name }}[unid]" value="{{ $value->unid ?? uniqid() }}" />
     </div>
 
 

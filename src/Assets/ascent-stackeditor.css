@@ -51,12 +51,8 @@
 
     margin: 10px;
     flex-basis: 100%;
-    /* display: flex; */
 
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-
-    /* gap: 10px; */
+    display: flex;
 
 }
 
@@ -310,7 +306,6 @@
     z-index: 500;
     display: flex;
     justify-content:center;
-    border: 1px solid red;
 }
 
 .blocks .inbetweener:after {

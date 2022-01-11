@@ -58,7 +58,9 @@
                                 >
                         {{-- //@endif --}}
                         
-                            <div class="grid-row xflex xrow">
+                            <div class="row">
+
+                                
 
                                     @php 
                                         if($item->collapseorder == 'right-to-left') {
@@ -67,11 +69,13 @@
                                             $blocks = $item->blocks;
                                         }
                                     
-                                    @endphp                                    
+                                    @endphp
+
+                                    
                     
                                     @foreach($blocks as $block) 
                                 
-                                        <div id="block-{{ $block->unid }}-outer" style="" class="match-height stack-block {{--  col-md-{{$block->cols->width}} col-sm-{{$block->cols->width * 2}} --}} @if($block->cols->width < 6) zhyphenbreak @endif">
+                                        <div id="block-{{ $block->unid }}-outer" style="" class="stack-block col-md-{{$block->cols->width}} col-sm-{{$block->cols->width * 2}} @if($block->cols->width < 6) zhyphenbreak @endif">
                                             
                                             <div id="block-{{ $block->unid }}" style="height: 100%;">
                                 
@@ -115,19 +119,5 @@
             {{-- render the CSS to a file which can be minified for performance etc --}}
             @style(getStackCSSFile($content, $model))
         @endif
-
-@endpush
-
-@push('scripts')
-    
-<script>
-    $(document).ready(function() {
-        $('.match-height').matchHeight(true);
-    });
-
-    $(window).on('resize', function() {
-        $('.match-height').matchHeight(true);
-    }); 
-</script>
 
 @endpush

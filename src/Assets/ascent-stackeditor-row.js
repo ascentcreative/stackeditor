@@ -113,10 +113,7 @@ var StackEditorRow = {
                         
                         $(elm).find('.block-col-start').val($(ph).data('start'));
                         $(elm).find('.block-col-count').val($(ph).data('cols'));
-                        // $(elm).css('width', $(ph).css('width'));
-                        $(elm).css('grid-column', $(ph).css('grid-column'));
-
-                        // $(elm).css('grid-column', )
+                        $(elm).css('width', $(ph).css('width'));
     
     
     
@@ -154,6 +151,7 @@ var StackEditorRow = {
 
 
             this.manageGaps();
+
 
 
         },
@@ -292,7 +290,7 @@ var StackEditorRow = {
             // console.log(item);
 
             createInbetweener = function() {
-                $ib = $('<div class="inbetweener" style="grid-column: 5"></div>').droppable({
+                $ib = $('<div class="inbetweener"></div>').droppable({
                     tolerance: 'pointer',
                     greedy: true,
                     accept: function(d) {
@@ -429,9 +427,7 @@ var StackEditorRow = {
                     $(ui.element).resizable('option', 'grid', [ colsize, 0 ]);
 
                     // min width = 3 cols
-                    //$(ui.element).resizable('option', 'minWidth', (colsize * 3) -1);
-
-                    $(ui.element).resizable('option', 'minWidth', (colsize) -1);
+                    $(ui.element).resizable('option', 'minWidth', (colsize * 3) -1);
 
                     $(ui.element).data('originalStart', $(ui.element).find('.block-col-start').val());
                     $(ui.element).data('originalCols', $(ui.element).find('.block-col-count').val());
@@ -485,22 +481,15 @@ var StackEditorRow = {
                     var newcols = Math.round(ui.size.width /  ($(ui.element).parents('.blocks').width() / 12), 2);
                     $(ui.element).find('.block-col-count').val(newcols);
 
-                    var newstart = $(ui.element).data('originalStart');
-
-                    console.log(newstart);
-
                     var axis = $(ui.element).data('ui-resizable').axis;
                     if(axis=="w") {
-
-                        newstart = parseInt($(ui.element).data('originalStart')) + (parseInt($(ui.element).data('originalCols') - newcols))
-
                         // if dragging the left side, start will change - work out based on the change in column width
                         $(ui.element).find('.block-col-start').val(
                             parseInt($(ui.element).data('originalStart')) + (parseInt($(ui.element).data('originalCols') - newcols))
                             );
                     }
 
-                    $(ui.element).css('left', '0px').css('width', 'auto').css('grid-column', (parseInt(newstart)) + '/ span ' + newcols);
+                    $(ui.element).css('left', '0px');
 
                     $(this).parents('.row-edit').stackeditorrow('manageGaps');
                 
@@ -513,8 +502,6 @@ var StackEditorRow = {
 
             });
 
-
-            console.log($(item).css('grid-row'));
            
 
         },
@@ -523,14 +510,11 @@ var StackEditorRow = {
 
         manageGaps:function() {
 
-            makePlaceholder = function(start, cols) {
+            makePlaceholder = function(cols) {
 
-                // width = (100/12) * cols;
+                width = (100/12) * cols;
 
-                // ph = $('<div class="placeholder" style="width: ' + width + '%"></div>');
-                
-                ph = $('<div class="placeholder" style="grid-column: ' + start + ' / span ' + cols + '"></div>');
-
+                ph = $('<div class="placeholder" style="width: ' + width + '%"></div>');
 
                 ph.append('<div class="placeholder-inner"><div class="placeholder-icon bi-plus-circle-fill"></div><div class="placeholder-label">Click to create a new block, or drag an existing block here</div></div>');
 
@@ -543,7 +527,7 @@ var StackEditorRow = {
 
             // console.log('start ManageGaps');
 
-            var iCol = 1;
+            var iCol = 0;
             var colcount = 12; // change this to alter the number of cols in the row.
             var colsize = 100/colcount; //$(this.element).find('.blocks').width() / colcount;
 
@@ -554,29 +538,26 @@ var StackEditorRow = {
                 var start = parseInt($(this).find('.block-col-start').val());
                 var count = parseInt($(this).find('.block-col-count').val());
 
-                console.log('start', start, isNaN(start));
-                console.log('count', count, isNaN(count));
+                // console.log('start', start, isNaN(start));
 
-                // if(isNaN(start)) {
-                //     console.log(this);
-                // }
-
-                console.log('iCol', iCol);
+                if(isNaN(start)) {
+                    console.log(this);
+                }
 
                 if (!isNaN(start) && start - iCol > 0) {
                     
                     var phsize = (start - iCol);
                     console.log('insering placeholder');
 
-                    var ph = makePlaceholder(iCol, start-iCol);
+                    var ph = makePlaceholder(phsize);
 
                     ph.data('start', iCol);
-                    ph.data('cols', (start-iCol));
+                    ph.data('cols', start-iCol);
 
                     $(this).before(ph);
 
                     // console.log('ph', ph);
-                    console.log(ph.data());
+                    // console.log(ph.data());
 
                 }
 
@@ -586,14 +567,12 @@ var StackEditorRow = {
 
 
             // add a placeholder at the end if needed:
-            if (iCol < (colcount+1)) {
+            if (iCol < colcount) {
 
-                var ph = makePlaceholder(iCol, (colcount+1) - iCol);
+                var ph = makePlaceholder(colcount - iCol);
 
                 ph.data('start', iCol);
-                ph.data('cols', (colcount+1)-iCol);
-
-                console.log(ph.data());
+                ph.data('cols', colcount-iCol);
 
                 $(this.element).find('.blocks').append(ph);
 

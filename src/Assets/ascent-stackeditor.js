@@ -53,23 +53,6 @@ var StackEditor = {
             });
 
 
-            // handler for layout mode change...
-            $(this.element).on('change', '#layout-select input', function() {
-                console.log($(this).data());
-
-                // change all the row grids to the relevant col count
-                $(self.element).find('.blocks').css('grid-template-columns', 'repeat(' + $(this).data('cols') + ', 1fr)');
-                $(self.element).find('.stack-rows').css('max-width', $(this).data('width'));
-
-            
-                // swap the blocks to the column settings stored for the selected view layout
-                
-
-
-
-            });
-
-
 
             $(this.element).on('click', '.row-delete', function() {
 

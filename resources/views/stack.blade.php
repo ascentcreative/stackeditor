@@ -45,20 +45,36 @@
 
         <A class="stack-add-row btn btn-secondary btn-sm bi-plus-circle-fill" data-block-field="{{ $safename }}" href="#">Add Row</A>
 
-            DEV BRANCH
-        <div class="btn-groups btn-group-toggle" id="layout-select" data-toggle="buttons">
-            <label class="bi-laptop btn-sm btn btn-secondary active">
-              <input type="radio" name="options" id="option1" autocomplete="off" checked data-cols="12" data-width="1400px"> Desktop
-            </label>
-            <label class="bi-tablet-landscape btn-sm btn btn-secondary">
-              <input type="radio" name="options" id="option2" autocomplete="off" data-cols="8" data-width="800px"> Tablet
-            </label>
-            <label class="bi-phone btn-sm btn btn-secondary">
-              <input type="radio" name="options" id="option3" autocomplete="off" data-cols="4" data-width="500px"> Mobile
-            </label>
-        </div>
+        <div class="btn-group dropright">
+           
+            <div class="dropdown-menu dropdown-menu-right" style="">
+
+                <a class="stack-add-row dropdown-item text-sm btn-option" href="#" data-block-type="text" data-block-field="{{ $safename }}">Text</a>
+                <a class="stack-add-row dropdown-item text-sm btn-option" href="#" data-block-type="image" data-block-field="{{ $safename }}">Image</a>
+                <a class="stack-add-row dropdown-item text-sm btn-option" href="#" data-block-type="video" data-block-field="{{ $safename }}">Video Row</a>
+                <div class="dropdown-divider"></div>
 
 
+                @foreach(config('cms.core_page_blocks') as $key=>$val) 
+
+                    <a class="stack-add-row dropdown-item text-sm btn-option" href="#" data-block-type="{{ $key }}" data-block-field="{{ $safename }}">{{ $val }}</a>
+
+                @endforeach
+
+                @if(count(config('cms.custom_page_blocks')) > 0)
+
+                    <div class="dropdown-divider"></div>
+
+                    @foreach(config('cms.custom_page_blocks') as $key=>$val) 
+
+                        <a class="stack-add-row dropdown-item text-sm btn-option" href="#" data-block-type="{{ $key }}" data-block-field="{{ $safename }}">{{ $val }}</a>
+
+                    @endforeach
+
+                @endif
+
+            </div>
+      </div>  
 
         @if($previewable)
             <button class="btn btn-sm btn-primary bi-eye-fill" id="stack-preview">Preview</button>

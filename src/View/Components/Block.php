@@ -14,9 +14,7 @@ class Block extends Component
     public $value;
 
     public $defaults;
-    
-
-
+  
   //  public $wrapper;
   //  public $class;
 

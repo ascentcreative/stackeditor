@@ -32,20 +32,5 @@ return [
         
     ],
 
-    'breakpoints' => [
-        'lg' => [
-            'width'=>'1400px',
-            'cols'=>12
-        ],
-        'md' => [
-            'width'=>'800px',
-            'cols'=>8
-        ],
-        'sm' => [
-            'width'=>'500px',
-            'cols'=>4
-        ],
-    ]
-
    
 ];

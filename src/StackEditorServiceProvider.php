@@ -59,13 +59,11 @@ class StackEditorServiceProvider extends ServiceProvider
    */
   public function bootAssets() {
     
-    // view()->composer('cms::base', function ($view) {
-    //     $view->with('packagecss',['stackcss']); 
-    // });
+    view()->composer('cms::base', function ($view) {
 
-    app('AscentCreative\CMS\Helpers\PackageAssets')
-        ->addStylesheet('/vendor/ascent/stackeditor/css/ascent-stackeditor-core.css');
+        $view->with('packagecss',['stackcss']); 
 
+    });
 
   }
 
