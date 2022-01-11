@@ -53,28 +53,25 @@
     @endif 
 
     {{-- grid-column: span {{ $data->cols->width }}; --}}
-    grid-column-start: {{ $data->cols->start+1 }};
-    grid-column-end: {{ $data->cols->start+1 + $data->cols->width }};
+    grid-column: {{ $data->cols->lg->start }} / span {{ $data->cols->lg->width }};
 
 }
 
 @media only screen and (max-width: 905px) {
 
     #{{ $id }}-outer {
-        grid-column-start: 1;
-        grid-column-end: {{ $data->cols->width }};
-        {{-- grid-column: span {{ round($data->cols->width / 12 * 8)  }}; --}}
+        grid-column:  {{ $data->cols->md->start }} / span {{ $data->cols->md->width }};
     }
 
 }
-{{-- 
+
 @media only screen and (max-width: 500px) {
 
-    #{{ $id }}-outer {
-        grid-column: span {{ round($data->cols->width / 12 * 2)  }};
+    #{{ $id }}-outer { 
+        grid-column:  {{ $data->cols->sm->start }} / span {{ $data->cols->sm->width }};
     }
 
-} --}}
+}
 
 #{{ $id }} .row {
     {{-- ALIGNMENT --}}

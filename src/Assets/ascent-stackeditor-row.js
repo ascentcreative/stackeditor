@@ -420,7 +420,12 @@ var StackEditorRow = {
 
                     $(ui.element).data('block-last-width', ui.size.width);
 
-                    var colcount = 12; // change this to alter the number of cols in the row.
+                    var displaydata = $(this).parents('.stackeditor').find("input[name='display[]']:checked").data();
+                    var size = displaydata['size'];
+                    var colcount = displaydata['cols'];
+                    console.log(colcount);
+
+                    // var colcount = 12; // change this to alter the number of cols in the row.
 
                     console.log('width at start:' + $(ui.element).parents('.blocks').width());
 
@@ -433,8 +438,8 @@ var StackEditorRow = {
 
                     $(ui.element).resizable('option', 'minWidth', (colsize) -1);
 
-                    $(ui.element).data('originalStart', $(ui.element).find('.block-col-start').val());
-                    $(ui.element).data('originalCols', $(ui.element).find('.block-col-count').val());
+                    $(ui.element).data('originalStart', $(ui.element).find('.block-col-' + size + '-start').val());
+                    $(ui.element).data('originalCols', $(ui.element).find('.block-col-' + size + '-count').val());
                     console.log($(ui.element).data('originalStart'));
                     
                   
@@ -479,11 +484,16 @@ var StackEditorRow = {
 
                 resize: function(event, ui) {
 
+
+                    var displaydata = $(this).parents('.stackeditor').find("input[name='display[]']:checked").data();
+                    var size = displaydata['size'];
+                    var colcount = displaydata['cols'];
+
                     // Need to work out based on absolute values as we might lose events on a fast drag
                     
                     // get the new cols width
-                    var newcols = Math.round(ui.size.width /  ($(ui.element).parents('.blocks').width() / 12), 2);
-                    $(ui.element).find('.block-col-count').val(newcols);
+                    var newcols = Math.round(ui.size.width /  ($(ui.element).parents('.blocks').width() / colcount), 2);
+                    $(ui.element).find('.block-col-' + size + '-count').val(newcols);
 
                     var newstart = $(ui.element).data('originalStart');
 
@@ -495,7 +505,7 @@ var StackEditorRow = {
                         newstart = parseInt($(ui.element).data('originalStart')) + (parseInt($(ui.element).data('originalCols') - newcols))
 
                         // if dragging the left side, start will change - work out based on the change in column width
-                        $(ui.element).find('.block-col-start').val(
+                        $(ui.element).find('.block-col-' + size + '-start').val(
                             parseInt($(ui.element).data('originalStart')) + (parseInt($(ui.element).data('originalCols') - newcols))
                             );
                     }
@@ -544,15 +554,23 @@ var StackEditorRow = {
             // console.log('start ManageGaps');
 
             var iCol = 1;
-            var colcount = 12; // change this to alter the number of cols in the row.
+
+            var displaydata = $(this.element).parents('.stackeditor').find("input[name='display[]']:checked").data();
+
+
+
+            var size = displaydata['size'];         
+            var colcount = displaydata['cols'];
+
+            //var colcount = 12; // change this to alter the number of cols in the row.
             var colsize = 100/colcount; //$(this.element).find('.blocks').width() / colcount;
 
             $(this.element).find('.placeholder').remove();
 
             $(this.element).find('.block:not(.ui-sortable-placeholder)').each(function() {
                 
-                var start = parseInt($(this).find('.block-col-start').val());
-                var count = parseInt($(this).find('.block-col-count').val());
+                var start = parseInt($(this).find('.block-col-' + size + '-start').val());
+                var count = parseInt($(this).find('.block-col-' + size + '-count').val());
 
                 console.log('start', start, isNaN(start));
                 console.log('count', count, isNaN(count));

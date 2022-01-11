@@ -54,16 +54,29 @@ var StackEditor = {
 
 
             // handler for layout mode change...
-            $(this.element).on('change', '#layout-select input', function() {
+            $(this.element).on('change', '#layout-select input[name="display[]"]', function() {
+
                 console.log($(this).data());
 
                 // change all the row grids to the relevant col count
                 $(self.element).find('.blocks').css('grid-template-columns', 'repeat(' + $(this).data('cols') + ', 1fr)');
                 $(self.element).find('.stack-rows').css('max-width', $(this).data('width'));
 
+                var size = $(this).data('size');
+                var cols = $(this).data('cols');
             
                 // swap the blocks to the column settings stored for the selected view layout
-                
+                $(self.element).find('.block').each(function(i,elm) {
+
+                    // if(cols == 12) {
+                        $(elm).css('grid-column', $(elm).find('.block-col-' + size + '-start').val() + ' / span ' + $(elm).find('.block-col-' + size + '-count').val());
+                    // } else {
+                        // $(elm).css('grid-column', 'auto/ span 2');
+                    // }
+
+                    
+
+                });
 
 
 

@@ -41,23 +41,42 @@
 
     <div class="stackeditor" id="{{$safename}}" name="{{$name}}">
 
-        <div class="flex flex-between pb-2">
+        <div class="flex flex-between pb-2" style="align-items:flex-end">
 
         <A class="stack-add-row btn btn-secondary btn-sm bi-plus-circle-fill" data-block-field="{{ $safename }}" href="#">Add Row</A>
 
-            DEV BRANCH
-        <div class="btn-groups btn-group-toggle" id="layout-select" data-toggle="buttons">
-            <label class="bi-laptop btn-sm btn btn-secondary active">
-              <input type="radio" name="options" id="option1" autocomplete="off" checked data-cols="12" data-width="1400px"> Desktop
-            </label>
-            <label class="bi-tablet-landscape btn-sm btn btn-secondary">
-              <input type="radio" name="options" id="option2" autocomplete="off" data-cols="8" data-width="800px"> Tablet
-            </label>
-            <label class="bi-phone btn-sm btn btn-secondary">
-              <input type="radio" name="options" id="option3" autocomplete="off" data-cols="4" data-width="500px"> Mobile
-            </label>
+        <div>
+            <span class="small"> Display Size:</span>
+            <div class="btn-groups btn-group-toggle" id="layout-select" data-toggle="buttons">
+                <label class="bi-laptop btn-sm btn btn-secondary active">
+                  <input type="radio" name="display[]" id="option1" autocomplete="off" checked data-cols="12" data-width="1200px" data-size="lg"> Desktop
+                </label>
+                <label class="bi-tablet-landscape btn-sm btn btn-secondary">
+                  <input type="radio" name="display[]" id="option2" autocomplete="off" data-cols="8" data-width="800px" data-size="md"> Tablet
+                </label>
+                <label class="bi-phone btn-sm btn btn-secondary">
+                  <input type="radio" name="display[]" id="option3" autocomplete="off" data-cols="4" data-width="500px" data-size="sm"> Mobile
+                </label>
+            </div>
         </div>
-
+       
+        
+        <div>
+            <span class="small"> Sidebar Setup:</span>
+            {{-- Should this just be On / Off, and the side configured by the site options (so it's consistent?) --}}
+            {{-- Also, should we have an option to load a saved sidebar? --}}
+            <div class="btn-groups btn-group-toggle" id="layout-select" data-toggle="buttons">
+                <label class="bi-square btn-sm btn btn-secondary active">
+                <input type="radio" name="sidebar[]" id="option1" autocomplete="off" checked> None
+                </label>
+                <label class="bi-layout-sidebar btn-sm btn btn-secondary">
+                <input type="radio" name="sidebar[]" id="option2" autocomplete="off"> Left
+                </label>
+                <label class="bi-layout-sidebar-reverse btn-sm btn btn-secondary">
+                <input type="radio" name="sidebar[]" id="option3" autocomplete="off"> Right
+                </label>
+            </div>
+        </div>
 
 
         @if($previewable)
