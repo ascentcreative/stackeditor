@@ -30,11 +30,12 @@ class Block extends Component
        
         $this->type = $type;
         $this->name = $name;
-        $this->value = $value;
-
+       
         if(!isset($value->unid)) {
             $value->unid = uniqid();
         }
+
+        $this->value = $value;
 
         // work out the descriptor and load the defaults:
         $this->defaults = resolveDescriptor($type)::getDefaults();
