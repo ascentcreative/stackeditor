@@ -1,6 +1,6 @@
 #{{ $id }} {
 
-    overflow-x: clip;
+    overflow-x: hidden;
 
     {{-- BACKGROUND --}}
     @if($data->bgcolor && $data->bgcolor != '')
