@@ -37,6 +37,11 @@ class StackEditorServiceProvider extends ServiceProvider
 
     $this->bootAssets();
 
+    $this->commands([
+        \AscentCreative\StackEditor\Commands\ClearCSS::class,
+        // \AscentCreative\CMS\Commands\RefreshMultiSizeImages::class,
+    ]);
+
   }
 
   
