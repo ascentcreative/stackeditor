@@ -13,6 +13,7 @@
     switch($block->clipmask ?? '') {
 
         case 'none':
+        case '':
             $clip = '';
             break;
 
