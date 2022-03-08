@@ -75,7 +75,7 @@
                     
                                     @foreach($blocks as $block) 
                                 
-                                        <div id="block-{{ $block->unid }}-outer" style="" class="stack-block col-md-{{$block->cols->width}} {{-- col-sm-{{$block->cols->width * 2}} --}} @if($block->cols->width < 6) zhyphenbreak @endif">
+                                        <div id="block-{{ $block->unid }}-outer" style="" class="stack-block stack-block-{{ $block->type }} col-md-{{$block->cols->width}} {{-- col-sm-{{$block->cols->width * 2}} --}} @if($block->cols->width < 6) zhyphenbreak @endif">
                                             
                                             <div id="block-{{ $block->unid }}" style="height: 100%;">
                                 
