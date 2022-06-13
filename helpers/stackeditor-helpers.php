@@ -180,3 +180,16 @@ function resolveDescriptor($type) {
     return ($map[$type]);
 
 }
+
+
+
+function se_addUnits($val, $default='px') {
+
+    $check = (string) ((int) $val); // convert to int and back to string (will lose any supplied units)
+
+    if($check == $val) {
+        return $val . $default;
+    } else {
+        return $val;
+    }
+}
