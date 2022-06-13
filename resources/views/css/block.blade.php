@@ -14,19 +14,19 @@
 
     {{-- PADDING --}}
     @if($data->padding->top && $data->padding->top != '') 
-        padding-top: {{ $data->padding->top }};
+        padding-top: {{ se_addUnits($data->padding->top) }};
     @endif 
 
     @if($data->padding->bottom && $data->padding->bottom != '') 
-        padding-bottom: {{ $data->padding->bottom }};
+        padding-bottom: {{ se_addUnits($data->padding->bottom) }};
     @endif 
 
     @if($data->padding->left && $data->padding->left != '') 
-        padding-left: {{ $data->padding->left }};
+        padding-left: {{ se_addUnits($data->padding->left) }};
     @endif 
 
     @if($data->padding->right && $data->padding->right != '') 
-        padding-right: {{ $data->padding->right }};
+        padding-right: {{ se_addUnits($data->padding->right) }};
     @endif 
 
 }
@@ -37,19 +37,19 @@
 
     {{-- MARGINS --}}
     @if($data->margin->top && $data->margin->top != '') 
-        padding-top: {{ $data->margin->top }};
+        padding-top: {{ se_addUnits($data->margin->top) }};
     @endif 
 
     @if($data->margin->bottom && $data->margin->bottom != '') 
-        padding-bottom: {{ $data->margin->bottom }};
+        padding-bottom: {{ se_addUnits($data->margin->bottom) }};
     @endif 
 
     @if($data->margin->left && $data->margin->left != '') 
-        padding-left: {{ $data->margin->left }};
+        padding-left: {{ se_addUnits($data->margin->left) }};
     @endif 
 
     @if($data->margin->right && $data->margin->right != '') 
-        padding-right: {{ $data->margin->right }};
+        padding-right: {{ se_addUnits($data->margin->right) }};
     @endif 
 
 }
