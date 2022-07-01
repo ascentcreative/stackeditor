@@ -16,6 +16,7 @@ return [
         app_path() . '/../vendor/ascentcreative/stackeditor/src/TypeDescriptors',
         app_path() . '/../vendor/ascentcreative/cms/src/StackEditor/TypeDescriptors',
         app_path() . '/../vendor/ascentcreative/blog/src/StackEditor/TypeDescriptors',
+        app_path() . '/../vendor/ascentcreative/store/src/StackEditor/TypeDescriptors',
         app_path() .'/StackEditor/TypeDescriptors',
     ],
 
@@ -25,6 +26,7 @@ return [
         'stackeditor::block',
         'cms::stackeditor',
         'blog::stackeditor',
+        'store::stackeditor'
     ],
 
     // TypeDescriptor classes to ignore

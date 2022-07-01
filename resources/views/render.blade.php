@@ -30,7 +30,7 @@
 
                 @isset($item->blocks)
 
-                    <div class="stack-row" id="row-{{ $item->unid }}" 
+                    <div class="stack-row" id="row-{{ $item->unid }}" style="position: relative" 
 
                             
                             @if(!Agent::isMobile())
@@ -43,7 +43,7 @@
                             >
 
                             {{-- To allow for blended BG colours over images, put the color as an overlaid div. --}}
-                            @if(isset($item->bgcolor) && $item->bgcolor != '' && isset($item->bgimage) && $item->bgimage != '') 
+                            @if(isset($item->bgcolor) && $item->bgcolor != '' && $item->bgcolor != 'transparent' && isset($item->bgimage) && $item->bgimage != '') 
                                 <div class="bgcolor" style="background-color: {{ $item->bgcolor }}; position: absolute; top: 0; bottom: 0; left: 0; right: 0"></div>
                             @endif
 
