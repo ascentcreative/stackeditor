@@ -25,8 +25,8 @@ class Stack extends Component
      *
      * @return void
      */
-    public function __construct($label, $name, $value, $previewable = true,
-                        $wrapper='bootstrapformgroup', $class='',     
+    public function __construct($label=null, $name, $value, $previewable = true,
+                        $wrapper='none', $class='',     
                         $model = null   
                     )
     {
