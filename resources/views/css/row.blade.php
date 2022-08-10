@@ -13,7 +13,6 @@
         background-size: cover;
     @endif --}}
 
-
     {{-- PADDING --}}
     @if($data->padding->top && $data->padding->top != '') 
         padding-top: {{ se_addUnits($data->padding->top) }};
@@ -61,5 +60,11 @@
         flex-direction: row-reverse;
     @endif
 
+}
+
+#{{ $id }} .row-content {
+    @if(isset($data->contentbgcolor))
+        background-color: {{ $data->contentbgcolor }}
+    @endif
 }
 

@@ -48,10 +48,11 @@
                             @endif
 
                         {{-- @if(!isset($item->fullwidth) || !$item->fullwidth)  --}}
-                            <div 
+                            <div class="row-content
                                 @if(!isset($item->contentwidth) || $item->contentwidth != '100%')
-                                class="centralise" 
+                                centralise
                                 @endif
+                                "
                                 @if(isset($item->contentwidth) && $item->contentwidth != '')
                                 style="max-width: {{ $item->contentwidth }}"
                                 @endif

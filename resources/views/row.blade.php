@@ -65,6 +65,8 @@
 
                 <x-cms-form-colour label="Background Colour" name="{{ $name }}[bgcolor]" :value="$value->bgcolor ?? ($defaults['bgcolor'] ?? 'transparent')" elementClass="row-bgcolor"/>
 
+                <x-cms-form-colour label="Content Background Colour" name="{{ $name }}[contentbgcolor]" :value="$value->contentbgcolor ?? ($defaults['contentbgcolor'] ?? 'transparent')" elementClass="row-contentbgcolor"/>
+
                 <x-cms-form-fileupload label="Background Image" name="{{ $name }}[bgimage]" :value="$value->bgimage ?? ''" />
 
                 <div class="border p-2 mb-2">
