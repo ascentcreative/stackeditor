@@ -260,7 +260,7 @@ var StackEditorRow = {
                 var prefix = fldname + '[' + rowidx + '][blocks][' + idx + ']';
                 // console.log(prefix);
 
-                $(this).find('INPUT:not([type=file]), SELECT, TEXTAREA').each(function(fldidx) {
+                $(this).find('INPUT, SELECT, TEXTAREA').each(function(fldidx) {
 
                         esc = fldname.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 

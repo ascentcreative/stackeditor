@@ -209,7 +209,7 @@ var StackRow = {
             // reapply field indexes to represent reordering
             $(this.element).find('.blockitem').each(function(idx) {
 
-                $(this).find('INPUT:not([type=file]), SELECT, TEXTAREA').each(function(fldidx) {
+                $(this).find('INPUT, SELECT, TEXTAREA').each(function(fldidx) {
                     var ary = $(this).attr('name').split(/(\[|\])/);
 
                     // console.log(ary);

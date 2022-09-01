@@ -158,7 +158,7 @@ var StackEditor = {
 
                 var prefix = fldname + "[" + idx + "]";
 
-                $(this).find('INPUT:not([type=file]), SELECT, TEXTAREA').each(function(fldidx) {
+                $(this).find('INPUT, SELECT, TEXTAREA').each(function(fldidx) {
 
                         esc = fldname.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
