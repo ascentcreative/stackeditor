@@ -46,7 +46,7 @@
            
         @show
 
-            <x-cms-form-colour label="Background Colour" name="{{ $name }}[bgcolor]" :value="$value->bgcolor ?? ($defaults['bgcolor'] ?? 'transparent')" elementClass="block-bgcolor"/>
+            <x-forms-fields-colour label="Background Colour" name="{{ $name }}[bgcolor]" :value="$value->bgcolor ?? ($defaults['bgcolor'] ?? 'transparent')" elementClass="block-bgcolor"/>
 
             <div class="border p-2 mb-2">
                 <div><strong>Padding</strong></div>
