@@ -25,7 +25,7 @@ class Stack extends Component
      *
      * @return void
      */
-    public function __construct($label=null, $name, $value, $previewable = true,
+    public function __construct($name, $value, $label=null, $previewable = true,
                         $wrapper='none', $class='',     
                         $model = null   
                     )
