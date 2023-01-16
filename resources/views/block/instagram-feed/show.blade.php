@@ -15,16 +15,19 @@
 <div class="ig-grid">
 
 
+    @php 
+        // Laravel 9 / Dymantic 3.2 back-compat
+        $igdata = $igdata->collect()->toArray(); 
+    @endphp
 
     @for($iPost = 0; $iPost < $block->imagecount; $iPost++)
 
-        @isset($igdata[$iPost])
-    {{-- @foreach($igdata as $post)  --}}
+       @isset($igdata[$iPost])
+
         <a href="#" data-toggle="modal" data-target="#ig-{{ $igdata[$iPost]['id'] }}" class="ig-grid-item" style="background-image: url('@if($igdata[$iPost]['type'] == 'image') {{ $igdata[$iPost]['url'] }} @else {{ $igdata[$iPost]['thumbnail_url'] }} @endif')">
 
         </a>
-    {{-- @endforeach --}}
-        @endisset
+        @endisset 
 
     @endfor
 
