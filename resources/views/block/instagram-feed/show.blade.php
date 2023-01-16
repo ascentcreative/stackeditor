@@ -23,7 +23,7 @@
 
        @isset($igdata[$iPost])
 
-        <a href="#" data-toggle="modal" data-target="#ig-{{ $igdata[$iPost]['id'] }}" class="ig-grid-item" style="background-image: url('@if($igdata[$iPost]['type'] == 'image') {{ $igdata[$iPost]['url'] }} @else {{ $igdata[$iPost]['thumbnail_url'] }} @endif')">
+        <a href="#" data-toggle="modal" data-target="#ig-{{ $igdata[$iPost]['id'] }}" class="ig-grid-item" style="background-image: url('@if($igdata[$iPost]['type'] == 'image') {{ $igdata[$iPost]['url'] }} @else {{ $igdata[$iPost]['url'] }} @endif')">
 
         </a>
         @endisset 
@@ -49,6 +49,7 @@
                 @switch($post['type'])
 
                     @case('image')
+                    @case('carousel')
 
                         <img class="modal-igpost-image" src="{{ $post['url'] }}" /> 
 
