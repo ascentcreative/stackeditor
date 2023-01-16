@@ -14,10 +14,9 @@
 
 <div class="ig-grid">
 
-
     @php 
         // Laravel 9 / Dymantic 3.2 back-compat
-        $igdata = $igdata->collect()->toArray(); 
+        $igdata = $igdata->collect()->map->toArray(); 
     @endphp
 
     @for($iPost = 0; $iPost < $block->imagecount; $iPost++)
