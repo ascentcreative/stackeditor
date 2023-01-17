@@ -2,6 +2,8 @@
 
 namespace AscentCreative\StackEditor\TypeDescriptors;
 
+use Illuminate\Database\Eloquent\Model;
+
 use AscentCreative\StackEditor\TypeDescriptors\AbstractDescriptor; 
 
 class Text extends AbstractDescriptor { 
@@ -17,5 +19,12 @@ class Text extends AbstractDescriptor {
     public static $defaults = [
     
     ];
+
+    
+    // public function extractText(Model $model, array $block) {
+
+    //     return strip_tags_leaving_spaces($block['content']);
+
+    // }
 
 }

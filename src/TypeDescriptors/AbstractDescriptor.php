@@ -133,4 +133,16 @@ abstract class AbstractDescriptor implements Contract {
     }
 
 
+    public function extractText(Model $model, array $block) {
+
+        $paths = stackeditorBladePaths(static::$bladePath, 'show');
+
+        foreach($paths as $path) {
+            if(view()->exists($path)) {
+                return strip_tags_leaving_spaces(view($path, ['block'=>(object) $block, 'model'=>$model])->render());
+            }
+        }
+
+    }
+
 }
