@@ -27,16 +27,20 @@ class StackIndexer {
         $out = [];
         if(is_array($input)) {
             foreach($input['rows'] as $row) {
+
+                if(isset($row['blocks'])) {
         
-                foreach($row['blocks'] as $block) {
-      
-                    if(is_array($block)) {
-                        $descriptor = resolveDescriptor($block['type']);
-                        if($descriptor) {
-                            $instance = new $descriptor();
-                            $out[] = $instance->extractText($model, $block);
-                            // $out[] = 
+                    foreach($row['blocks'] as $block) {
+        
+                        if(is_array($block)) {
+                            $descriptor = resolveDescriptor($block['type']);
+                            if($descriptor) {
+                                $instance = new $descriptor();
+                                $out[] = $instance->extractText($model, $block);
+                                // $out[] = 
+                            }
                         }
+
                     }
 
                 }
