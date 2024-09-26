@@ -90,7 +90,7 @@
 
 @push('scripts')
 
-    @script('/vendor/ascent/cms/js/jquery.touchSwipe.min.js')
+    @scripttag('/vendor/ascent/cms/js/jquery.touchSwipe.min.js')
 
    <script>
 

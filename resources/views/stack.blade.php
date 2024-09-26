@@ -231,9 +231,9 @@
         @style('/vendor/ascent/stackeditor/ascent-stackeditor.css')
     @endpush
     @push('lib')
-        @script('/vendor/ascent/cms/js/jquery.serializejson.js')
-        @script('/vendor/ascent/stackeditor/ascent-stackeditor.js')
-        @script('/vendor/ascent/stackeditor/ascent-stackeditor-row.js')
+        @scripttag('/vendor/ascent/cms/js/jquery.serializejson.js')
+        @scripttag('/vendor/ascent/stackeditor/ascent-stackeditor.js')
+        @scripttag('/vendor/ascent/stackeditor/ascent-stackeditor-row.js')
     @endpush
 @endonce
 
