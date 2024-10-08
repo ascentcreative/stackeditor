@@ -132,7 +132,7 @@ function discoverTypeDescriptors($model = null) : array {
 
         foreach ($files as $file) {
 
-            $class = getClassFullNameFromFile($file);
+            $class = \AscentCreative\StackEditor\ReflectionHelper::getClassFullNameFromFile($file);
 
             $ref = new  ReflectionClass($class);
 
