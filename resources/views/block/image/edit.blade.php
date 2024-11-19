@@ -2,7 +2,6 @@
 
 @section('block-content')
     <div class="wrap {{ $value->clipmask ?? '' }} {{ $value->objectfit ?? '' }}">
-        HERE
         <x-forms-fields-croppie label="" name="{{ $name }}[image]" value="{!! isset($value->image) ? $value->image : ''  !!}" wrapper="none"/>
     </div>
 @overwrite
