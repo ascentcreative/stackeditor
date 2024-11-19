@@ -10,7 +10,8 @@
   ],
   "require": {
     "matthiasmullie/minify": "^1.3",
-    "doctrine/dbal": "^3.0"
+    "doctrine/dbal": "^3.0",
+    "ascentcreative/files": "dev-dev"
   },
   "autoload": {
     "psr-4": {
