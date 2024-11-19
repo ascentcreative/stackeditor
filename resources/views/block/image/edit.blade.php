@@ -2,7 +2,7 @@
 
 @section('block-content')
     <div class="wrap {{ $value->clipmask ?? '' }} {{ $value->objectfit ?? '' }}">
-        <x-cms-form-croppie label="" name="{{ $name }}[image]" value="{!! isset($value->image) ? $value->image : ''  !!}" wrapper="none"/>
+        <x-forms-fields-croppie label="" name="{{ $name }}[image]" value="{!! isset($value->image) ? $value->image : ''  !!}" wrapper="none"/>
     </div>
 @overwrite
 
